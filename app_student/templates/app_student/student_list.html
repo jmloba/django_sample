@@ -1,0 +1,160 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+{%include 'app_student/student-sidebar.html' %}
+<div id="alert-box">
+
+</div>
+<section id="course-list">
+  <div class="my-container my-container-para d-block " 
+  style="--margin-top:10px; 
+        --margin-right:5%;
+        --margin-left: 180px; ">
+
+    <div class="course-div" >
+      <div class="course-entry">
+        <h3>Course</h3>
+        <form action="" method="'POST" id="course-form">
+          {%csrf_token%}
+          {{course_Form|crispy}}
+          
+          <input type="hidden" name ="hidden-course-id" id ="hidden-course-id">
+          
+          <input type="button" id="btn-create-course" class="btn 
+          btn-mybtn" value="Save" data-url="{% url 'app_student:course-save' %}">
+
+
+        </form>
+
+      </div>
+
+      <div class="course-table">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Course</th>
+              <th >Action</th>              
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            {% for course in courses%}
+            <tr id="course-rec-id-{{course.id}}">
+              <th scope="row">{{course.name}}</th>
+              
+              <td>
+                <button class="btn btn-info btn-sm"
+                data-sid="{{course.id}}" 
+                id="btn-course-edit"
+                data-url="{% url 'app_student:course-edit' %}">
+                <i class="bi bi-pencil"></i>
+                </button>
+                &ensp;&ensp;&ensp;
+                <button class="btn btn-danger btn-sm"
+                data-sid="{{course.id}}" 
+                id="btn-course-delete"
+                data-url="{% url 'app_student:course-delete' %}">
+                  <i class="bi bi-trash3"></i>
+                </button>
+
+                
+              
+                
+              </td>
+              
+            </tr>
+            {% endfor%}
+        
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="student-list">
+  <div class="my-container my-container-para d-block " 
+  style="--margin-top:10px; 
+        --margin-right:5%;
+        --margin-left: 180px; ">
+    <div class="student-div">
+      <div class="student-entry">
+        <h3>Student</h3>
+        <form action="" method="'POST" id="student-form">
+          {%csrf_token%}
+          {{student_Form|crispy}}
+          
+          <input type="text" name ="hidden-stud-id" id ="hidden-stud-id">
+          
+          <input type="button" id="btn-create-stud" class="btn 
+          btn-mybtn" value="Save" data-url="{% url 'app_student:student-save' %}">
+
+
+        </form>
+      </div>
+      <div class="student-table">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col">First Name</th>
+              <th scope="col">Last Name</th>
+              <th scope="col">Course</th>
+              <th scope="col">Email</th>
+              <th >Action</th>              
+            </tr>
+          </thead>
+          <tbody id="tbody-student">
+            {% for student in students%}
+            <tr id="student-rec-id-{{student.id}}">
+              <th scope="row">{{student.firstname}}</th>
+              <th >{{student.lastname}}</th>
+              <th >{{student.course.name}}</th>
+              <th >{{student.email}}</th>
+              
+              <td>
+                <button class="btn btn-info btn-sm"
+                data-sid="{{student.id}}" 
+                id="btn-student-edit"
+                data-url="{% url 'app_student:student-edit' %}">
+                <i class="bi bi-pencil"></i>
+                </button>
+                &ensp;&ensp;&ensp;
+                <button class="btn btn-danger btn-sm"
+                data-sid="{{student.id}}" 
+                id="btn-student-delete"
+                data-url="{% url 'app_student:student-delete' %}">
+                  <i class="bi bi-trash3"></i>
+                </button>
+
+                
+              
+                
+              </td>
+              
+            </tr>
+            {% endfor%}
+        
+          </tbody>
+        </table>
+
+      </div>
+
+    </div>    
+
+
+
+  </div>
+</section>
+
+
+<link rel="stylesheet" href="{% static 'css/custom-app-student.css' %}">
+<link rel="stylesheet" href="{% static 'css/custom-app-student-sidebar.css' %}">
+
+<script src="{% static 'js/app-student-list.js' %}" ></script> 
+
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+<section id="student-menu">
+  <div class="my-container my-container-para d-block " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+    <div class="header-links">
+      <h3>Student</h3>
+      {%include 'app_student/headerlink-student-menu.html' %}
+    </div>
+    
+
+    <div class="sales-menu">
+      <div class="card">
+      </div>
+      
+    </div>
+  </div>
+
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-app-student.css' %}">
+
+{% endblock %}

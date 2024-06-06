@@ -1,0 +1,96 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+
+{% block content %}
+<section id="person-main">
+
+  <div class="my-container my-container-para d-block " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 200px; "
+  >
+  {%include 'app_student/student-sidebar.html' %}  
+    <div class="header-links">
+      <h3>person</h3>
+    </div>
+
+    
+
+    <div class="person-data">
+      <div class="card card-entry " style="width: 18rem;">
+        <div class="card-body">
+          <h5 class="card-title">Chained Dropdown List</h5>
+          <h6 class="card-subtitle mb-2 text-muted">https://www.youtube.com/watch?v=LmYDXgYK1so</h6>
+          <h6>https://www.youtube.com/@CodeBand</h6>
+          <form action="" method="POST" autocomplete="on" id="personForm"
+          data-cities-url="{% url 'app_person:ajax-load-cities' %}">
+            {%csrf_token%}
+            {{form|crispy}}
+            <p>entry data</p>
+
+            <input type="submit"  class="btn btn-mybtn" value="Add">          
+  
+  
+          </form>          
+
+        </div>
+      </div>      
+      <div class="card card-data" style="width: 20rem;">
+        <div class="card-body">
+          <h5 class="card-title">Person(Data)</h5>
+          <div class="data-table">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">City</th>
+                  <th scope="col">Country</th>
+                  <th scope="col">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for person in persons %}
+                <tr>
+                  <th scope="row">{{person.name}}</th>
+                  <td>{{person.city}}</td>
+                  <td>{{person.country}}</td>
+                  <td>---</td>
+                </tr>
+                {% endfor %}
+               
+              </tbody>
+            </table>
+
+          </div>
+
+       
+
+        </div>
+      </div>      
+    </div>
+    <div class="div-links">
+      <h5>Export to excel</h5>
+      <div class="div-buttons">
+        <button class="btn btn-mybtn import-country" disabled=True>
+          <a  href="#{% url 'app_person:import-file-excel' %}">Import Excel Country</a>
+        </button>
+        <button class="btn btn-mybtn" disabled=True>
+          <a  href="{% url 'app_person:import-cities-file-excel' %}">Import Excel City</a>
+        </button>
+      </div>
+    </div>
+
+
+
+  </div>
+
+</section>
+<link rel="stylesheet" href="{% static 'css/custom-app-student-sidebar.css' %}">
+<link rel="stylesheet" href="{% static 'css/custom-app-person.css' %}">
+<script src="{% static 'js/app-person-main.js' %}" ></script> 
+
+
+{% endblock %}

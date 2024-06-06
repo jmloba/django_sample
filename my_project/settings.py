@@ -45,11 +45,15 @@ INSTALLED_APPS = [
     # 'app_accounts',
     'app_sample',
     'app_sales',
+    'app_invoice',
+    'app_student',
+    'app_person',
     'django_filters',
     #3rd party
     'widget_tweaks',
     "crispy_forms",
     "crispy_bootstrap5",
+    'import_export',
 ]
 
 

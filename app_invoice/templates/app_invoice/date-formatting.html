@@ -1,0 +1,131 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+
+{% load static %}
+{% block content %}
+<section id="date-formatting">
+
+  <div class="my-container my-container-para d-block " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 200px; "
+  >
+  {%include 'app_student/student-sidebar.html' %}  
+    <div class="header-links">
+      <h3>{{title}}</h3>
+    </div>
+
+    
+    <div class="div-container">
+      <div class="split-view">
+        <div class="card card-entry " >
+          <div class="card-body">
+  
+            <div class="invoice-form-div">
+              <form action="" >
+                {%csrf_token%}
+                <p>from Form/p>  
+                {{date_sample1_form|crispy}}
+                <hr>
+                <input type="date" id="dt-date">
+                <input type="datetime" id="dt-datetime">
+                <input type="datetime-local" id="dt-datetime-local">
+                <button id="btn-get-date-formvalues" 
+                class="btn btn-mybtn" 
+                >Submit</button>
+
+              </form>
+            </div>
+
+
+            <div class="read-file">
+              <button id="btn-read-invoice-file" 
+              class="btn btn-mybtn" 
+              data-url="{% url 'app_invoice:read-invoice-file' %}"
+              >read invoice file</button>
+              <div class="alert-box"></div>
+
+
+            </div>
+
+
+
+          </div>
+        </div>      
+        <div class="card card-data">
+          <div class="card-body">
+            <h5 class="card-title">Invoice Entries(Data)</h5>
+            <div class="search-table">
+              <p>Search </p>
+
+            </div>
+            <div class="data-table">
+              <table class="table table-striped">
+                <thead>
+                  <tr >
+                    <th scope="col">Customer</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>                  
+                    <th scope="col">Amount</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody">
+                  user : {{user}}
+                  {% for item in invoice_db %}
+                  <tr id="invoice-id-{{item.id}}">
+                    <th scope="row">{{item.customer__name}}</th>
+                    <td>{{item.invoice_date}}</td>
+                    <td>{{item.description}}</td>
+                    <td>{{item.quantity}}</td>
+                    <td>{{item.price}}</td>
+                    <td>{{item.amount}}</td>
+                    <td><button class="btn btn-info btn-sm"
+                      data-sid="{{item.id}}" 
+                      id="btn-invoice-edit"
+                      data-url="{% url 'app_invoice:invoice-edit' %}">
+                      <i class="bi bi-pencil"></i>
+                      </button>
+                      &ensp;&ensp;&ensp;
+                      <button class="btn btn-danger btn-sm"
+                      data-sid="{{item.id}}" 
+                      id="btn-invoice-delete"
+                      data-url="{% url 'app_invoice:invoice-delete' %}">
+                        <i class="bi bi-trash3"></i>
+                      </button></td>
+  
+                  </tr>
+                  {% endfor %}
+                 
+                </tbody>
+              </table>
+  
+            </div>
+            <hr>
+            <div class="invoice-summary">
+              <h3>Invoice Summary</h3>  
+              <p>Total Records : {{invoice_db.count}}</p>
+            </div>
+          </div>
+        </div>      
+      </div>
+  
+    </div>
+
+    
+
+
+
+  </div>
+
+</section>
+<link rel="stylesheet" href="{% static 'css/custom-app-student-sidebar.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/custom-app-invoice-dateformat.css' %}">
+
+<script src="{% static 'js/app-invoice-main.js' %}" ></script> 
+
+
+{% endblock %}

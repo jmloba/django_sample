@@ -1,0 +1,34 @@
+{% load crispy_forms_tags %}
+{% load static %}
+<div class="invoice-form-div">
+  <h5 class="card-title">{{card_title}}</h5>
+  <form action="" method="POST" autocomplete="on" id="invoiceForm">
+      {%csrf_token%}
+      <!-- {{invoice_form|crispy}} -->
+      <div class="row">
+          <div class="form-row ">
+            <div class="form-group d-flex">
+              {{invoice_form.customer|as_crispy_field}}
+              {{invoice_form.invoice_date|as_crispy_field}}
+            </div>
+          </div>
+          <div class="form-row  ">
+            <div class="form-group">
+              {{invoice_form.description|as_crispy_field}}
+            </div>
+          </div>
+          <div class="form-row ">
+            <div class="form-group col-md-12">
+                {{invoice_form.quantity|as_crispy_field}}
+                {{invoice_form.price|as_crispy_field}}
+                {{invoice_form.amount|as_crispy_field}}
+            </div>
+          </div>          
+
+
+        </div>
+      <input type="submit"  class="btn btn-mybtn" value="Add">          
+  </form>      
+</div>
+
+  

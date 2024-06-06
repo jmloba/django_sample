@@ -1,0 +1,75 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+
+{% block content %}
+<section id="invoice-dynamic-form">
+
+  <div class="my-container my-container-para d-block " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 200px; "
+  >
+  {%include 'app_student/student-sidebar.html' %}  
+    <div class="header-links">
+      <h3>{{title}}</h3>
+      <p>https://www.youtube.com/watch?v=HZarmNqfL7s</p>
+    </div>
+
+    
+    <div class="container">
+      <div class="row my-4">
+        <div class="col-lg-10 mx-auto">
+          <div class="card shadow">
+            <div class="card-header">Add Items</div>
+            <div class="card-body p-4">
+              <form action="" method="POST" id="add-form">
+                {% csrf_token %}
+                <div id="show-item">
+                  <div class="row">
+                    <div class="col-md-4 mb-3">
+                      <input type="text" name="product_name[]" class="form-control" placeholder="item name" required>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <input type="number" name="product_price[]" class="form-control" placeholder="product price" required>
+                    </div>                    
+                    <div class="col-md-3 mb-3">
+                      <input type="number" name="product_quantity[]" class="form-control" placeholder="quantity" required>
+                    </div>   
+                    <div class="col-md-2 mb-3 d-grid">
+                      <button class="btn btn-mybtn add-item-button">Add More</button>
+                    </div>                                                  
+
+                  </div>
+                  <div class="submit-form">
+                    <input type="submit" value="Add Entries" class="btn btn-mybtn" id="add-btn">
+                  </div>
+
+                </div>
+
+
+
+              </form>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<link rel="stylesheet" href="{% static 'css/custom-app-student-sidebar.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/custom-app-invoice-dynamic-form.css' %}">
+
+<script src="{% static 'js/app-invoice-dynamic-form.js' %}" ></script> 
+
+
+{% endblock %}
