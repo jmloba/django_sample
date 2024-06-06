@@ -1,0 +1,11 @@
+
+#app-post .table-row{
+  background-color: rgb(157, 124, 16);
+}
+#app-post .view-area{
+  background-color: rgb(186, 137, 119);
+
+}
+#app-post #tbody{
+  margin: 10px 20px;
+}

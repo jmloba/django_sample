@@ -1,0 +1,22 @@
+
+#reading-files .view-area{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+#reading-files .row-divs{
+  padding: 15px 15px;
+
+}
+
+/* hide */
+#btn-clear-api,
+#btn-clear-json,
+#btn-clear-text{
+  display: none;
+}
+#reading-files .list-group{
+  width: 100%;
+  overflow-wrap: break-word;
+}
+

@@ -1,0 +1,111 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+
+{% block content %}
+<section id="customer-page">
+  <div class="my-container my-container-para " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+    <div class="container">
+      
+      <div class="row">
+        <div class="col-md">
+          <div class="card card-body">
+            <h5><small>Customer: </small><span>{{customer.name}}</span> <h5>
+            <hr>
+            <a class="btn btn-outline-info btn-sm btn-block" href="">Update Customer</a>
+            
+
+            <a  class="btn btn-outline-info btn-sm btn-block" href="{% url 'app_sample:order-create' customer.id %}">Place Order</a>
+
+          </div>
+            
+
+        </div>
+        <div class="col-md">
+          <div class="card card-body">
+            <h5>Contact Information</h5>
+            <hr>
+            <p><i class="bi bi-envelope-arrow-up-fill"></i>  {{customer.email}}</p>
+            <p><i class="bi bi-phone-fill"></i> {{customer.phone}}</p>
+
+          </div>
+
+        </div>  
+        <div class="col-md">
+          <div class="card card-body">
+            <h5>Total Orders</h5>
+            <hr>
+            <h1 style="text-align:center;
+            padding : 10px;
+            
+            ">{{orders_count}}</h1>
+          </div>  
+        </div>  
+
+
+      </div>
+      <br>
+
+      <div class="row">
+        <div class="col">
+          <div class=" card card-body">
+
+            <form action="" method ='GET'>
+              {%csrf_token%}
+              {{myFilter.form}}
+              <button class="btn btn-primary" type="submit">Search</button>
+
+            </form>
+
+          </div>
+
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md">
+          <div class="card card-body">
+            <table class="table table-sm"> 
+              <tr>
+                <th>Product</th>  
+                <th>Category</th>
+                <th>Date  Ordered</th>
+                <th>Status</th>
+                <th>Notes</th>
+                <th>Update</th>
+                <th>Removed</th>
+              </tr>
+              
+              {% for order in orders %}
+              <tr>
+                <td>{{order.product}}</td>
+                <td>{{order.product.category}}</td>
+                <td>{{order.date_created}}</td>
+                <td>{{order.status}}</td>
+                <td>{{order.notes}}</td>
+
+                <td><a class="btn btn-sm btn-info" href="{% url 'app_sample:order-update' order.id %}">Update</a></td>
+
+                <td><a class="btn btn-sm btn-danger" href="{% url 'app_sample:order-delete' order.id %}">delete</a></td>
+              </tr>
+              {% endfor %}
+
+            </table>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-home.css' %}">
+
+{% endblock %}

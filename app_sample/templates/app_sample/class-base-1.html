@@ -1,0 +1,72 @@
+{% extends  'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<section id="class-base-1">
+  <div class="my-container my-container-para " 
+  style="--margin-top:20px; 
+        --margin-right:10%;
+        --margin-left: 10%; "
+  >
+
+ 
+    <div class="main-box">
+      <h4>Class Based</h4>
+      <div class="container">
+        <div class="product-table">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">itemnumber</th>
+                <th scope="col">Album</th>
+                <th scope="col">Title</th>
+                <th scope="col">Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for product in products%}
+              <tr>
+                <th scope="row">{{product.itemnumber}}</th>
+                <td>{{product.album}}</td>
+                <td>{{product.title}}</td>
+                <td>{{product.price}}</td>
+              </tr>
+              {% endfor %}
+             
+            </tbody>
+          </table>
+
+
+        </div>
+        <div class="product_list">
+          <form action="{% url 'app_sample:product-list' %}" method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-primary" value="submit" >
+
+          </form>
+        </div>
+        
+
+      </div>
+
+
+
+
+    </div>
+
+
+  </div>
+
+     
+ 
+
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-app-sample.css' %}">
+
+
+{% endblock %}

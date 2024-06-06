@@ -1,0 +1,61 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+
+{% block content %}
+<section id="home">
+  <div class="my-container my-container-para " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-md">
+        <div class="card card-body">
+          <h5>Products</h5>
+
+        </div>
+        <div class="card card-body">
+          <table class="table">
+            <thead> 
+              <tr>
+                <th>Product</th>
+                <th>Category</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for product in products %}
+              <tr>
+                <th scope="row">{{product.name}}</th>
+                <td>{{product.category}}</td>
+                <td>{{product.price}}</td>
+                
+              </tr>
+              {% endfor %}
+
+            </tbody>
+
+          </table>
+
+        </div>        
+
+      </div>
+
+
+    </div>
+
+  </div>
+  </div>
+
+
+  
+</section>
+
+
+
+<link rel="stylesheet" href="{% static 'css/custom-home.css' %}">
+
+{% endblock %}

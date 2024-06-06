@@ -1,0 +1,75 @@
+{% extends  'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<section id="sample_course">
+  <div class="my-container my-container-para " 
+  style="--margin-top:20px; 
+        --margin-right:10%;
+        --margin-left: 10%; "
+  >
+
+ 
+    <div class="main-box">
+      <div class="main-item course-entry">
+        <form action="{% url 'app_sample:sample_course' %}" method="POST">
+
+          {% csrf_token %}
+          {% for field in form_course %}
+            <div class="fieldWrapper">
+            {{field.errors}}
+            {{field.label_tag}} {{field}}
+            {% if field.help_text %}
+            <p class="help">{{field.help_text|safe}}</p>
+            {% endif %}
+            </div>
+          {% endfor %}
+          <br> 
+          <input type="submit" class="btn btn-primary" value="submit" >
+        
+        
+        </form>
+
+      </div>
+
+      <div class="main-item course-list">
+        <table class="table ">
+          <thead>
+            <tr>
+              <th scope="col">Course</th>
+
+            </tr>
+          </thead>
+          <tbody>
+            {% for course in courses %}
+            <tr>
+              <th>{{course}}</th>
+          
+            </tr>
+            {% endfor %}
+            
+          </tbody>
+        </table>
+        
+
+      </div>
+
+
+
+    </div>
+
+
+  </div>
+
+     
+ 
+
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-app-sample.css' %}">
+
+
+{% endblock %}

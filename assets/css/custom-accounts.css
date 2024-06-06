@@ -1,0 +1,15 @@
+#register-form .form_container{
+
+  /* background-color:  var( --color2 ); */
+
+  display : block;
+  
+  justify-content: center;
+  align-items: center;
+  margin : 20px 20px;
+  padding : 20px 20px;
+}
+
+#register-form .form-title{
+  color : red;
+}

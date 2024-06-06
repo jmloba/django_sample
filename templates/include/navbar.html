@@ -1,0 +1,83 @@
+{% load static %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+  <a 
+
+  href="{% url 'home' %}" class="navbar-text mb-0 h2 navbar-text "    >
+
+
+  <img class="d-inline-block align-top " 
+    src="{% static 'logo/logo.jpg' %}" 
+    alt="picture"  width="35" height="35" />
+  <span>S</span><span-b>ample</span-b>
+  </a>   
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      {% if user.is_authenticated %}
+        {% if request.user.is_staff %}
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Dashboard </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Products</a>
+        </li>   
+   
+
+        {% else %}  
+        <li class="nav-item">
+          <a class="nav-link" href="">Account Setting</a>
+
+        </li>          
+ 
+        {% endif %}
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="">other links</a>
+
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{%url 'app_sample:topics'%}">topics</a>
+        </li> 
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+        <li class="nav-item">
+          <span><a class="nav-link" id="logout-button" href="{% url 'app_accounts:logout-view' %}">Logout</a></span>
+        </li>
+      {% else %}
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'app_accounts:register-view' %}">Register</a>
+        </li>      
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'app_accounts:login-view' %}">Login</a>
+
+        </li>      
+      {% endif %}  
+ 
+
+
+    </ul>
+
+
+   
+
+  </div>
+  <span id="hello-message">Hello,{{request.user}}</span>
+ 
+</nav>
+
+<link rel="stylesheet" href="{% static 'css/custom-navbar-main.css' %}">

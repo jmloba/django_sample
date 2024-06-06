@@ -1,0 +1,26 @@
+#topics .card-list{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+
+}
+#topics .card{
+  width : 15em; 
+  max-width: 20em;
+  
+  margin: 10px 10px;
+  
+}
+#topics .card-body .btn-group{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: center;
+  background-color: rgb(215, 226, 197);
+  overflow: auto;
+
+}
+#topics .card-body button{
+
+  margin: 5px 5px;
+}

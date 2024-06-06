@@ -1,0 +1,77 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+
+{% block content %}
+{%include 'app_student/student-sidebar.html' %}
+<section id="foreign-key-sample">
+  <div class="my-container my-container-para " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 200px; "
+  >
+    <div class="div-topic">
+      <h3>working with foreignkey</h3>
+    </div>
+
+    <div class="div-table-course">
+      <h5>Course Table</h5> 
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">**Course Name**</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for course in course_list %}
+          <tr>
+            <th scope="row">{{course.name}}</th>
+          </tr>
+          {% endfor %}
+      
+        </tbody>
+      </table>
+    </div>
+    <hr>
+    <div class="div-students">
+      <h5>Student Table</h5> 
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Email</th>
+            <th scope="col">Course</th>
+            
+          </tr>
+        </thead>
+        <tbody>
+
+          {% for student in students %}
+          <tr>
+            <th scope="row">{{student.firstname}}</th>
+            <td scope="row">{{student.lastname}}</td>
+            <td scope="row">{{student.email}}</td>            
+            <td scope="row">{{student.course}}</td>            
+
+
+          </tr>
+          {% endfor %}
+      
+        </tbody>
+      </table>
+
+    </div>
+
+
+  </div>
+
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-foreignkey-sample.css' %}">
+<link rel="stylesheet" href="{% static 'css/custom-app-student-sidebar.css' %}">
+
+
+{% endblock %}

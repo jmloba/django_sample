@@ -1,0 +1,91 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+
+{% block content %}
+<section id="category-entry">
+  <div class="my-container my-container-para d-block " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+    <div class="header-links">
+      
+      {%include 'app_sales/headerlink-sales-main.html' %}
+      <h3>Category Entry</h3>
+    </div>
+    <div id="alert-box"> 
+ 
+    </div>
+    
+
+    <div class="category-div">
+      <div class="category-div-items div-entry">
+        <form id='category-form' action="POST" autocomplete="on">
+          {% csrf_token%}
+          {{form|crispy}}
+
+          <input type="text" name ="stuid" id ="stuid">
+          
+          <input type="button" id="btn-create-category" class="btn 
+          btn-mybtn" value="Save" data-url="{% url 'app_sales:category-save-entry' %}">
+        </form>
+
+      </div>
+
+      <div class="category-div-items div-list">
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            {% for category in categories %}
+
+            <tr id="categ-id-{{category.id}}">
+              <th scope="row">{{category.name}}</th>
+              <td>
+                <button class="btn btn-info btn-sm"
+                data-sid="{{category.id}}" 
+                id="btn-category-edit"
+                data-url="{% url 'app_sales:category-edit' %}">
+                <i class="bi bi-pencil"></i>
+                </button>
+                &ensp;&ensp;&ensp;
+                <button class="btn btn-danger btn-sm"
+                data-sid="{{category.id}}" 
+                id="btn-category-delete"
+                data-url="{% url 'app_sales:category-delete' %}">
+                  <i class="bi bi-trash3"></i>
+                </button>
+
+                
+              
+                
+              </td>
+           
+            </tr>
+            {% endfor %}
+           
+        </table>
+
+
+      </div>
+
+      
+    </div>
+  </div>
+
+</section>
+
+
+<script src="{% static 'js/app-sales-category.js' %}" ></script> 
+
+<link rel="stylesheet" href="{% static 'css/custom-app-sales.css' %}">
+
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+
+{% block content %}
+<section id="select-option-page">
+  <div class="my-container my-container-para " 
+  style="--margin-top:5px; 
+        --margin-right:200px;
+        --margin-left:200px; "
+  >
+  {%include 'app_student/student-sidebar.html' %}    
+    <div class="container">
+      <div class="card" >
+        <div class="card-body">
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+
+
+          <div class="div-select-option">
+            <h5>how to get the selected dropdown</h5>
+            <h6>using javascript</h6>
+            <hr>
+            <form action="" id="form_id" onchange="getddl()">
+              <select name="ddlselect">
+                <option >Select Game</option>
+                <option value="Football">Football</option>
+                <option value="Tennis">Tennis</option>
+                <option value="Piko">Piko</option>
+
+              </select>
+              <label id="lblmessage"></label>
+
+            </form>
+          </div>
+          
+          <a href="{% url 'app_sample:topics' %}" >Topics</a>
+
+        </div>
+      </div>
+
+
+
+    </div>
+  </div>
+
+</section>
+<link rel="stylesheet" href="{% static 'css/custom-app-student-sidebar.css' %}">
+
+<link rel="stylesheet" href="{% static 'css/custom-app-sample-selectoption.css' %}">
+
+<script src="{% static 'js/app-sample-select-option.js' %}" ></script> 
+
+<script>
+  function getddl(){
+    document.getElementById('lblmessage').innerHTML=('The selected dropdown value is : '+form_id.ddlselect[form_id.ddlselect.selectedIndex].text)
+  }
+</script>
+
+
+{% endblock %}

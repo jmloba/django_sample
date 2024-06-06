@@ -1,0 +1,69 @@
+{% extends  'main/base.html' %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/custom-app-sample.css' %}">
+
+{% block content %}
+
+
+<section id="topics">
+  <div class="my-container my-container-para d-block" style="--margin-top:20px; 
+        --margin-right:7%;
+        --margin-left: 7%; ">
+          <div class="card-list">
+
+        
+            <div class="card" >
+              <div class="card-body">
+                <h5 class="card-title">Forms</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">details.</p>
+                <div class="btn-group">
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_sample:bootstrap-box' %}">bootstrap box</a></button>
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_sample:sample_course' %}">course</a></button>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="card" >
+              <div class="card-body">
+                <h5 class="card-title">SAmple Progs</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">details.</p>
+                <div class="btn-group">
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_sales:sales-main' %}">Sales Main App</a></button>
+                </div>                
+                <div class="btn-group">
+                  <button class="btn btn-mybtn"><a  href="">Student Main App</a></button>
+                </div>
+
+                <div class="btn-group">
+                  <button class="btn btn-mybtn"><a  href=''>Chained Dropdown List</a></button>
+                </div>
+              
+
+
+              </div>
+            </div>       
+            <div class="card" >
+              <div class="card-body">
+                <h5 class="card-title">Invoice</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">details.</p>
+                <div class="btn-group">
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_invoice:invoice-create' %}">Invoice Create</a></button>
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_invoice:date-formatting' %}">date formatting </a></button>
+                  <button class="btn btn-mybtn"><a  href="">dynamic form input</a></button>                  
+
+                </div>
+              </div>
+            </div>
+  
+          </div>
+  </div>
+
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-app-topics.css' %}">
+
+{% endblock %}

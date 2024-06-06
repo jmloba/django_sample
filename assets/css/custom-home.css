@@ -1,0 +1,70 @@
+#total-orders .card-header{
+  background-color: rgb(137, 213, 186);
+  color : blue;
+}
+#orders-delivered .card-header{
+  background-color: rgb(53, 118, 28);
+  color : blue;
+}
+#orders-pending .card-header{
+  background-color: rgb(200, 132, 44);
+  color : blue;
+}
+
+
+#main-section-status .container {
+  margin: 20px 20px;
+}
+.navbar a img{
+  justify-content : center;
+  align-items: center;
+
+
+}
+
+
+
+#orders-pending  .card-title ,
+#orders-delivered  .card-title ,
+#total-orders  .card-title {
+  color : rgb(22, 5, 69);
+
+}
+#customer-page .container .row .col-md,
+#customer-page .container .row{
+  margin-bottom : 7px;
+}
+#customer-page .row .card h5 span{
+  color : red;
+}
+#customer-page .container .row .col-md .card p i{
+  color : blue;
+}
+#order-delete h5.delete-title{
+  color : rgb(11, 11, 156);
+
+}
+
+#order-form .row .card,
+#order-delete .row .card{
+  background-color: rgb(214, 223, 191);
+  margin : 2em 2em;
+
+} 
+
+#order-delete table{
+  color : rgb(11, 11, 156);
+
+}
+#order-form .row .card form{
+  padding: 0 25px;
+  
+}
+#order-form .row .card p > span{
+  color :rgb(33, 113, 30);
+  font-weight: 600;
+}
+  
+
+
+

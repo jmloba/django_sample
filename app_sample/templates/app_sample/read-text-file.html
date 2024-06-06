@@ -1,0 +1,62 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="reading-files">
+  <div class="my-container my-container-para  d-block " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+
+      <div class = "center">
+        <h3 class="text-center">REad Files</h3>
+      </div>
+      <div class="header-links">
+        {% include 'app_sample/headerlink-read-files.html' %}
+  
+      </div>
+
+      <div class="view-area">
+
+        <div class="col-md-4 row-divs read-text-file">
+          <button id="ajaxtutor-text-btn" class="btn btn-primary" type="submit">REad Text File</button>
+          <div class="contents">
+            <div id="text-div"></div>
+
+            <div class="button-clear">
+              <button id="btn-clear-text" class="btn btn-primary" type="submit">clear Area Text</button>
+            </div>
+          </div> 
+
+        </div>
+
+        <div class="col-md-4 row-divs read-json-file">
+          <button id="ajaxtutor-json-btn" class="btn btn-primary" type="submit">REad json File</button>
+          <div id="json-div"></div> 
+          <div class="button-clear">
+            <button id="btn-clear-json" class="btn btn-primary" type="submit">clear Area Json</button>
+          </div>          
+
+        </div>
+        
+        <div class="col-md-4 row-divs">
+          <button id="ajaxtutor-api-btn" class="btn btn-primary" type="submit">API data</button>
+          <div id="api-div"></div>             
+          <div class="button-clear">
+            <button id="btn-clear-api" class="btn btn-primary" type="submit">clear Area Json</button>
+          </div> 
+        </div>
+
+      </div>
+    </div>    
+  </div>  
+
+
+</section>
+<link rel="stylesheet" href="{% static 'css/reading-files.css' %}">
+
+<script src="{% static 'js/read-files.js' %}" ></script> 
+{% endblock %}
+

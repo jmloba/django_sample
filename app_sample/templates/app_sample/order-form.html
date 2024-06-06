@@ -1,0 +1,46 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+
+{% block content %}
+<section id="order-form">
+  <div class="my-container my-container-para " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+    <div class="row">
+      <div class="col-md">
+        <div class="card card-body">
+          <h5>Create Order </h5>
+          <p>Customer: <span>{{customer}}</span></p>
+
+          <form action="" method = 'POST' class="form">
+            {% csrf_token %}
+            {{ formset.management_form}}
+            {% for form in formset %}
+            {{form}}
+              <hr>
+            {%endfor %}
+
+            <input class = "btn btn-primary" type="submit" value ='Submit'>
+          </form>
+        
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  
+</section>
+
+
+
+
+ 
+
+<link rel="stylesheet" href="{% static 'css/custom-home.css' %}">
+
+{% endblock %}

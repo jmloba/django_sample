@@ -1,0 +1,113 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+
+
+{% block content %}
+<section id="grocery-master-entry">
+  <div class="my-container my-container-para d-block " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+    <div class="header-links">
+      {%include 'app_sales/headerlink-sales.html' %}
+      <h3>Grocery Master File Item Entry</h3>      
+    </div>
+    <div id="alert-box"> 
+ 
+    </div>
+    
+
+    <div class="grocery-div">
+      <div class="grocery-div-items div-entry">
+        <form id='grocery-master-form' action="POST" autocomplete="on">
+          {% csrf_token%}
+          {{form|crispy}}
+
+          <input type="text" name ="stuid" id ="stuid">
+          
+          <input type="button" id="btn-create-mastergrocery" class="btn 
+          btn-mybtn" value="Save" data-url="{% url 'app_sales:grocerymaster-save-entry' %}">
+        </form>
+
+      </div>
+
+      <div class="grocery-div-items div-list">
+        <div class="search-div">
+          <form action="" method ='POST'>
+            {% csrf_token %}
+            {{searchform|crispy}}
+     
+            <input type="submit"  class="btn btn-mybtn" value="Search" >
+          </form>
+        </div>
+
+        <table class="table">
+          <thead class="thead-light">
+            <tr>
+              <th scope="col">ItemNumber</th>
+
+              <th scope="col">Description</th>
+              <th scope="col">Category</th>
+
+              <th scope="col">Cost Price</th>
+              <th scope="col">Sale Price</th>
+              
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            {% for item in grocery_master %}
+
+            <tr id="categ-id-{{item.id}}">
+              <th scope="row">{{item.item_no}}</th>
+              <td>{{item.description}}</td>
+              <td>{{item.category}}</td>
+
+              <td>{{item.costprice}}</td>
+              <td>{{item.saleprice}}</td>
+              
+
+
+              <td>
+                <button class="btn btn-info btn-sm"
+                data-sid="{{item.id}}" 
+                id="btn-grocery-edit"
+                data-url="{% url 'app_sales:grocery-master-edit' %}">
+                <i class="bi bi-pencil"></i>
+                </button>
+                &ensp;&ensp;&ensp;
+                <button class="btn btn-danger btn-sm"
+                data-sid="{{item.id}}" 
+                id="btn-grocery-delete"
+                data-url="{% url 'app_sales:grocery-delete' %}">
+                  <i class="bi bi-trash3"></i>
+                </button>
+
+                
+              
+                
+              </td>
+           
+            </tr>
+            {% endfor %}
+           
+        </table>
+
+
+      </div>
+
+      
+    </div>
+  </div>
+
+</section>
+
+
+<script src="{% static 'js/app-sales-master.js' %}" ></script> 
+
+<link rel="stylesheet" href="{% static 'css/custom-app-sales-master.css' %}">
+
+{% endblock %}

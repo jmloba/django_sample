@@ -1,0 +1,8 @@
+#foreign-key-sample .my-container{
+  display: block;
+  background-color: beige;
+}
+#foreign-key-sample .div-student h5,
+#foreign-key-sample .div-table-course h5{
+  color : red;
+}

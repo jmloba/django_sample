@@ -1,0 +1,73 @@
+{% extends  'main/base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+
+<section id="task">
+  <div class="my-container my-container-para " 
+  style="--margin-top:20px; 
+        --margin-right:10%;
+        --margin-left: 10%; "
+  >
+
+ 
+    <div class="main-box">
+      <h4>Class Based</h4>
+      <div class="container">
+        <div class="product-table">
+          <!-- <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">task</th>
+   
+              </tr>
+            </thead>
+            <tbody>
+              {% for task in tasks%}
+              <tr>
+                <th scope="row">{{task.body}}</th>
+            
+              </tr>
+              {% endfor %}
+             
+            </tbody>
+          </table> -->
+
+
+        </div>
+        <div class="product_list">
+          <a href="{% url 'app_sample:task' %}">Go BAck</a>
+
+          <form action="{% url 'app_sample:tasks' %}" method="POST">
+            {% csrf_token %}
+            <!-- {{form.as_p}} -->
+            <textarea name="body" id="body-id">{{task.body}}</textarea>
+            <input type="submit" class="btn btn-primary" value="Save changes" >
+
+          </form>
+          <hr>
+          <a href="{% url 'delete' task.id%}">Delete</a>
+        </div>
+        
+
+      </div>
+
+
+
+
+    </div>
+
+
+  </div>
+
+     
+ 
+
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-app-sample.css' %}">
+
+
+{% endblock %}

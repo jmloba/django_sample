@@ -1,0 +1,123 @@
+{% extends 'main/base.html'%}
+{% load static %}
+{% block content %}
+<section id="home">
+  <div class="my-container my-container-para " 
+  style="--margin-top:4em; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+  <h3>booking list XXX</h3>
+  <div class="container">
+    
+    {% include 'include/status.html' %}
+    <div class="row">
+      <div class="customer-view col-md-5">
+        <h5>Customers</h5>
+        <hr>  
+        <div class="card card-body">
+          <a href="" class="btn btn-primary btn-sm btn-block">Create Customer</a>
+          <table class="table table-sm">
+            <tr>
+              <th></th>
+              <th>Customer</th>
+              <th>Phone</th>
+            </tr>
+            {%for customer in customers%}
+            <tr>
+              <td><a class="btn btn-sm btn-info" href="{% url 'app_sample:customer' customer.id %}">View</a></td>
+              <td><a href="{% url 'app_sample:customer' customer.id %}"> {{customer.name}}</a>
+                </td>
+              <td>{{customer.phone}}</td>
+
+            </tr>
+            {% endfor %}
+
+          </table>
+
+        </div>
+
+      </div>
+      <div class="product-view col-md-7">
+        <h5>last 5 orders</h5>
+        <hr>  
+        <div class="card card-body">
+    
+          <table class ="table table-sm">
+            <tr>
+              <th>Product</th>
+              <th>Date Ordered</th>
+              <th>Status</th>
+              <th>UPdate</th>
+              <th>Remove</th>
+            </tr>
+            {%for order in orders%}
+            <tr>
+              <td>{{order.product}}</td>
+              <td>{{order.date_created}}</td>
+              <td>{{order.status}}</td>
+              <style></style>
+
+              <td><a class="btn btn-sm btn-info" href="{% url 'app_sample:order-update' order.id %}">Update</a></td>
+
+              <td><a class="btn btn-sm btn-danger" href="{% url 'app_sample:order-delete' order.id %}">delete</a></td>
+
+            </tr>
+            {% endfor %}
+
+
+
+          </table>
+          
+          
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  </div>
+
+
+  
+</section>
+
+<section id="other-links">
+  <div class="my-container my-container-para " 
+  style="--margin-top:5px; 
+        --margin-right:20%;
+        --margin-left: 20%; "
+  >
+
+
+
+    <div class="row pt-5" >
+      <div class="col-md-5">
+        <h5>Other </h5>
+        <div class="other-links">
+          <p>app_sample:products</p>
+          <a href="#">Products</a>
+        </div>
+  
+
+
+
+      </div>
+    
+
+      
+
+    </div>  
+  </div>  
+
+</section>
+
+
+
+ 
+
+<link rel="stylesheet" href="{% static 'css/custom-home.css' %}">
+
+{% endblock %}

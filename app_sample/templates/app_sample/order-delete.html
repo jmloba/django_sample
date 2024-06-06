@@ -1,0 +1,67 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+
+{% block content %}
+<section id="order-delete">
+  <div class="my-container my-container-para " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+    <div class="row">
+      <div class="col-md">
+        <div class="card card-body">
+          <h5 class="delete-title">Order Deletion </h5>
+          <table class ="table table-sm">
+            <thead>
+              <tr>
+                <th>Customer</th>
+                <th>Product</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody> 
+              <tr>
+                <td>{{item.customer}}</td>
+                <td>{{item.product}}</td>
+                <td> {{item.status}}</td>
+
+              </tr>
+
+            </tbody>
+
+
+          </table>
+     
+
+          <p>Are you sure you want to delete?</p>
+
+          
+          <form action="{% url 'app_sample:order-delete' item.id %}" method = 'POST'>
+            {% csrf_token %}
+            <a class="btn btn-warning" href="{% url 'home' %}">Cancel</a>
+            <input class="btn btn-danger" type="submit" value="Confirm">
+
+          </form>
+
+         
+        
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  
+</section>
+
+
+
+
+ 
+
+<link rel="stylesheet" href="{% static 'css/custom-home.css' %}">
+
+{% endblock %}
