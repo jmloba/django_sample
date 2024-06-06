@@ -1,0 +1,68 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="app-post">
+  <div class="my-container my-container-para  d-block " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+
+      <div class = "center">
+        <h3 class="text-center">Posts</h3>
+      </div>
+      <div>
+        {% include 'app_posts/headerlink-app-post.html' %}
+  
+      </div>
+      <div id="post-box" >
+      </div>
+
+      <div id="hello-world" >
+      </div>
+
+      
+      <div class="view-area">
+        <div class="row">
+          <div class="col-md-6 table-row">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">author</th>
+                  <th scope="col">title</th>
+                  <th scope="col">body</th>
+                  <th scope="col">liked</th>
+                </tr>
+              </thead>
+              <tbody id="tbody">
+                {% for post in posts%}
+                <tr>
+                  <th scope="row">{{post.author.user}}</th>
+                  <td>{{post.title}}</td>
+                  <td>{{post.body}}</td>
+                  <td>{{post.liked}}</td>
+                </tr>
+                {% endfor %}
+               
+              </tbody>
+            </table>
+
+
+          </div>
+          <div class="col-md-6">
+
+        </div>
+    
+      </div>
+    </div>    
+    
+
+
+</section>
+<link rel="stylesheet" href="{% static 'css/custom-app-post.css' %}">
+
+<script src="{% static 'js/custom-app-post.js' %}" ></script> 
+{% endblock %}
+

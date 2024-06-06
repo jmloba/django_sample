@@ -1,0 +1,81 @@
+{% extends 'main/base.html'%}
+{% load widget_tweaks %}
+{% load static %}
+
+
+
+{% block content %}
+<section id="phone-list">
+  <div class="my-container my-container-para " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+    <div class="header-links">
+      <h3>Phone list</h3>
+      {%include 'app_hr/headerlink-phone-list-create.html' %}
+    </div>
+
+    <div class="phone-main">
+      <div class="form-dept ">
+        <h5>Create new Phone</h5>
+
+
+        <form action="{% url 'app_hr:phone-add'%}" method = 'POST'>
+          {%  csrf_token %}
+    
+          <label for="phone_number">Phone Number:</label>
+          <!-- {{form.name}} -->
+          {% render_field form.phone_no placeholder='name' class+='form-control ' id='entry-phone-number' ame='phone_number' %}
+          <br>
+
+
+          <button class="btn btn-mybtn" type="submit">Save</button>
+
+        </form>
+        
+      </div>
+      <div class="p-list ">
+        <h5>Phone  List</h5>
+        <div class="table-dept"><table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">User</th>
+
+              <th scope="col">Phone Number</th>
+              <th scope="col">Action</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% for phone in phonelist %}
+            <tr>
+              <th scope="row">{{phone.id}}</th>
+              <td>{{phone.user_id.username}}</td>
+              <td>{{phone.phone_no}}</td>
+              <td>xxx</td>
+              
+            </tr>
+            {% endfor %}
+        
+          </tbody>
+        </table>
+
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+ 
+
+<link rel="stylesheet" href="{% static 'css/custom-app-hr.css' %}">
+
+
+{% endblock %}

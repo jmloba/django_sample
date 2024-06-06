@@ -1,0 +1,38 @@
+{% extends 'main/base.html'%}
+{% load crispy_forms_tags %}
+{% load static %}
+
+{% block content %}
+<section id="profile-2">
+  <div class="my-container my-container-para d-block " 
+  style="--margin-top:20px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  > 
+    <div class="header d-block text-center">
+      
+   
+
+    </div>
+    
+    <div class="row">
+      <div class="col-md-4">
+        <div class="div-message">
+          <h5 id="id-message"></h5>
+
+        </div>
+        
+      </div>
+      <div class="col-md-7">
+      </div>
+
+
+    </div>
+  </div>
+
+
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-app-hr-profile-2.css' %}">
+<script src="{% static 'js/app_hr_profile_2.js' %}" ></script> 
+{% endblock %}

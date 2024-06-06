@@ -14,4 +14,7 @@ urlpatterns = [
     path('app_invoice/',  include('app_invoice.urls')),
     path('app_student/',  include('app_student.urls')),
     path('app_person/',  include('app_person.urls')),
+    path('app_hr/',  include('app_hr.urls')),
+    path('app_posts/',  include('app_posts.urls')),
+    path('app_booking/',  include('app_booking.urls')),
 ]

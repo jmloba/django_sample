@@ -1,0 +1,71 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+
+{% block content %}
+<section id="home">
+
+  <div class="my-container my-container-para " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-md">
+        <div class="card card-body">
+          <h5>Booking List</h5>
+
+        </div>
+        
+        <div class="card card-body">
+          <p></p>
+
+        
+          <div class="table-booking">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th scope="col">Room</th>
+                  <th scope="col">Check-in</th>
+                  <th scope="col">Check-out</th>
+
+                </tr>
+              </thead>
+              <tbody>
+                {% for booking in booking_list %}
+                <tr>
+                  <th scope="row">{{booking.room}}</th>
+                  <td>{{booking.check_in}}</td>
+                  <td>{{booking.check_out}}</td>
+                  
+                </tr>
+                {% endfor %}
+               
+              </tbody>
+            </table>
+
+
+          </div>
+
+
+        </div>        
+
+      </div>
+
+
+    </div>
+
+  </div>
+  </div>
+
+
+  
+</section>
+
+
+
+<link rel="stylesheet" href="{% static 'css/custom-home.css' %}">
+
+{% endblock %}

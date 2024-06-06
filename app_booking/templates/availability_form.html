@@ -1,0 +1,66 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+
+{% block content %}
+<section id="home">
+  <div class="my-container my-container-para " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+  <div class="container">
+    
+    <div class="row">
+      <div class="col-md">
+        <div class="card card-body">
+          <h5>Booking List</h5>
+
+        </div>
+        
+        <div class="card card-body">
+          <p></p>
+
+        
+          <div class="availability-form">
+            <form action="" method="POST">
+              {% csrf_token %}
+              {{form.as_p}}
+              
+              <button type="submit">Book Room</button>
+
+
+            </form>
+
+
+
+
+
+
+          </div>
+
+          <div class="form-error">
+            {% include 'include/form-error.html' %}
+
+          </div>
+
+
+        </div>        
+
+      </div>
+
+
+    </div>
+
+  </div>
+  </div>
+
+
+  
+</section>
+
+
+
+<link rel="stylesheet" href="{% static 'css/custom-home.css' %}">
+
+{% endblock %}

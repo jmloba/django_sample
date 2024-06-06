@@ -22,17 +22,18 @@
       {% if user.is_authenticated %}
         {% if request.user.is_staff %}
         <li class="nav-item active">
-          <a class="nav-link" href="#">Dashboard </a>
+          <a class="nav-link" href="{% url 'app_sample:dashboard' %}">Dashboard 
+          </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Products</a>
+          <a class="nav-link" href="{% url 'app_sample:products' %}">Products</a>
         </li>   
-   
-
         {% else %}  
         <li class="nav-item">
-          <a class="nav-link" href="">Account Setting</a>
-
+          <a class="nav-link" href="{% url 'app_sample:account-setting' %}">Account Setting</a>
+        </li>          
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'app_sample:topics' %}">Topics </a>
         </li>          
  
         {% endif %}
@@ -45,18 +46,20 @@
             <a class="dropdown-item" href="#">Action</a>
             <a class="dropdown-item" href="#">Another action</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="">other links</a>
+            <a class="dropdown-item" href="{% url 'app_sample:topics' %}">other links</a>
+            <a class="dropdown-item" href="{% url 'app_booking:RoomList' %}">Room List</a>
+            <a class="dropdown-item" href="{% url 'app_booking:BookingList' %}">Booking List</a>
+            <a class="dropdown-item" href="{% url 'app_booking:bookingview' %}">Booking View</a>
+
 
           </div>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{%url 'app_sample:topics'%}">topics</a>
-        </li> 
         <li class="nav-item">
           <a class="nav-link disabled" href="#">Disabled</a>
         </li>
         <li class="nav-item">
           <span><a class="nav-link" id="logout-button" href="{% url 'app_accounts:logout-view' %}">Logout</a></span>
+
         </li>
       {% else %}
         <li class="nav-item">
@@ -64,7 +67,6 @@
         </li>      
         <li class="nav-item">
           <a class="nav-link" href="{% url 'app_accounts:login-view' %}">Login</a>
-
         </li>      
       {% endif %}  
  

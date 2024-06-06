@@ -1,0 +1,59 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<section id="crispyform">
+  <div class="my-container my-container-para d-block " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+    <div class="header-links">
+      <h3>Using Crispy form </h3>
+      {%include 'app_hr/headerlink-crispyform.html' %}
+    </div>
+
+    <div class="row  ">
+      <div class="col-lg-3 mt-3">
+        <div id="alert-box"> 
+          <p>colum 3</p>
+        </div>
+
+        <div id="img-box"> 
+          <p>img-box</p>
+        </div>
+        <form id='p-form' action="" autocomplete="on">
+          {% csrf_token%}
+          {{form|crispy}}
+          <button type="submit" class="btn btn-mybtn">Submit</button>
+        </form>  
+      </div>
+      <div class=" col-lg-4">
+        <div> 
+          <p>colum 4</p>
+        </div>
+      </div>
+      <div class=" col-lg-5">
+        <div> 
+          <p>colum 5</p>
+        </div>
+      </div>
+
+
+
+
+
+    </div>
+  </div>
+
+</section>
+
+
+<link rel="stylesheet" href="{% static 'css/custom-app-hr.css' %}">
+
+<script src="{% static 'js/app_hr_crispy_add_photo.js' %}" ></script> 
+
+{% endblock %}

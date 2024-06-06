@@ -1,0 +1,89 @@
+{% extends 'main/base.html'%}
+
+{% load static %}
+{% load widget_tweaks %}
+
+
+{% block content %}
+<section id="department-create">
+  <div class="my-container my-container-para d-block " 
+  style="--margin-top:5px; 
+        --margin-right:5%;
+        --margin-left: 5%; "
+  >
+    <div class="header-links">
+      <h3>Department</h3>
+      {%include 'app_hr/headerlink-depart-create.html' %}
+    </div>
+
+    <div class="row  dept-details">
+      <div class=" dept-form col-lg-4">
+        <div> 
+          <h5>Create new Department</h5>
+
+        </div>
+        <div>
+          <form class='dept-create-form' action="{% url 'app_hr:department-create'%}" method = 'POST'>
+            {%  csrf_token %}
+            <!-- {{form.as_p}} -->
+            <label for="name">Name:</label>
+            <!-- {{form.name}} -->
+            {% render_field form.name placeholder='name' class+='form-control entry-name' name='name' %}
+
+            <!-- {{form.description}} -->
+            <label for="description">Description:</label>
+
+            {% render_field form.description placeholder='description' class+='form-control entry-desc' name='description' %}
+            <br>
+
+            <button  class="btn btn-mybtn" type="submit">Save</button>
+  
+          </form>
+        </div>
+
+        
+      </div>
+      <div class="col-lg-7">
+        <h5>Department List</h5>
+        <div class="table-dept"><table class="table table-dark">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Department</th>
+              <th scope="col">Description</th>
+              <th scope="col">Action</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            {% for dept in depts %}
+            <tr>
+              <th scope="row">{{dept.id}}</th>
+              <td>{{dept.name}}</td>
+              <td>{{dept.description}}</td>
+              <td>
+
+
+              </td>
+              
+            </tr>
+            {% endfor %}
+         
+          </tbody>
+        </table>
+
+
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </div>
+
+</section>
+
+<link rel="stylesheet" href="{% static 'css/custom-app-hr.css' %}">
+
+{% endblock %}
