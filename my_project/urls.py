@@ -17,4 +17,5 @@ urlpatterns = [
     path('app_hr/',  include('app_hr.urls')),
     path('app_posts/',  include('app_posts.urls')),
     path('app_booking/',  include('app_booking.urls')),
+    path('app_print/',  include('app_print.urls')),
 ]

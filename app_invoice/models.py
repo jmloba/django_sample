@@ -19,7 +19,7 @@ class Invoice (models.Model):
   user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)                         
   customer = models.ForeignKey(Customer,on_delete=models.PROTECT, null=True, blank=True)
 
-  invoice_no=models.IntegerField(default=0, blank=True, 
+  invoice_no = models.IntegerField(default=0, blank=True, 
                                  null=True)
 
   invoice_date  = models.DateTimeField(default=datetime.now, blank=True, null=True)

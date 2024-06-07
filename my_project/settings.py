@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'app_student',
     'app_person',
     'app_posts',
+    'app_print',
     'app_hr',
     'django_filters',
     #3rd party

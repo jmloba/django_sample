@@ -1,0 +1,8 @@
+#invoice-print .div-table{
+  background-color: rgb(230, 205, 205);
+  padding : 2em 2em;
+  border-radius: 10px;;
+}
+#invoice-print table{
+  border-radius: 10px;;
+}
