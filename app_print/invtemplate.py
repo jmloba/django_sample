@@ -11,8 +11,7 @@ def draw_line(c):
     c.line(-.5*inch, 7.3 * inch, 6.8 * inch, 7.3 * inch)  
 def logo_draw(c):
     #  logo print ---
-    c.drawImage('c:\\reportlab\\logo\\logo_red.png', 
-                -.4 * inch, 8.5 * inch, 1.5 * inch, 1.5 * inch)    
+    c.drawImage('c:\\reportlab\\logo\\logo_red.png', -.4 * inch, 8.5 * inch, 1.5 * inch, 1.5 * inch)    
 def set_canvas(c):
     c.translate(inch, inch)  
 
@@ -47,27 +46,26 @@ def print_pageno(c,y_axis,pageno):
   c.setFillColor('#050C9C')
   c.setFont("Helvetica",12)
   c.drawString( 6.0*inch, y_axis * inch, 'Page No: '+str(pageno))
-def reference_code_print(c)  :
+def reference_code_print(c,invoice_no)  :
     c.setFillColorCMYK(0, 0, 0, 89)
     c.setFont("Helvetica", 15)
     c.drawString(-.5*inch,7*inch, "Reference No :")
     c.setFillColorCMYK(30, 13, 0, 0)
-    c.drawString(2*inch,7*inch, 'refno xxx')    
+    c.drawString(2*inch,7*inch, str(invoice_no))    
 
 
-def my_temp(c , pageno):
+def print_template(c , pageno,invoice_no):
 
-    set_canvas(c)
     logo_draw(c)
     draw_a4_borderrectangle(c)
     draw_line(c)
-    # prnt_hello(c)
+
     rectangle_address(c)
     # draw_watermark(c)
     import_date(c)
     print_table_header(c,6.3)
     print_pageno(c,7.5,pageno)
-    # c.showPage()
-    # c.save()
+    reference_code_print(c,invoice_no)
+ 
     pageno+=1
     return c,pageno  

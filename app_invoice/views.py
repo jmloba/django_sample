@@ -1,16 +1,19 @@
 from django.http import JsonResponse, FileResponse,HttpResponse
-
+from django.db.models import Sum, Q
 from django.shortcuts import redirect, render
 from .forms import InvoiceForm, InvoiceSearchForm, Date_Sample1
-from .models import Invoice,Customer, Ref_Table
+
+from .models import Invoice,Customer, Ref_Table, InvoiceSummary
 from app_accounts.utils import reformat_date
 import io
+from app_print.views import print_invoice
 
 # printing
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
 
 from reportlab.lib.pagesizes import A4, letter
+
 
 
 
@@ -199,26 +202,51 @@ def get_invoice_x():
   print(f' prev_val{prev_val}, newval: {newval}')
   return prev_val
 
+
 def get_invoice():
+  '''get the value of  invoice  in reference table'''
   prev_val =Ref_Table.objects.filter(reference='Sales Invoice').values('ref_no')[0]['ref_no']
   print(f"prev_val : {type(prev_val)} ")
 
+  '''increment the value for the next invoice '''
   Ref_Table.objects.filter(reference='Sales Invoice').update(ref_no=prev_val+1)
+
   newval =Ref_Table.objects.filter(reference='Sales Invoice').values('ref_no')[0]['ref_no']
 
   print(f"newval : {type(newval)} , {newval}")
   return newval
 
 def put_invoice(request,new_invoice):
-  # update the invoice number
+  ''' 
+  update the invoice number if user  and invoice value is 0
+  '''
   Invoice.objects.filter(user=request.user,invoice_no = 0).update(invoice_no=new_invoice)
+
+  qs_sum =Invoice.objects.filter(user=request.user, invoice_no = new_invoice).aggregate(Sum('quantity') , Sum('amount') ) 
+
+  # print(f"getting the summ of total invoice :\n{qs_sum} \n sum quantity: {qs_sum['quantity__sum'] } \n sum amount : {qs_sum['amount__sum']}")
+
+
+  InvoiceSummary.objects.create(user=request.user,invoice_no =new_invoice , total_quantity = qs_sum['quantity__sum'] ,total_amount=qs_sum['amount__sum'])
+
+
+
+
   
 
 def create_an_invoice(request):
+  '''get the invoice no from the reference file '''
   new_invoice = get_invoice()
+
   put_invoice(request,new_invoice)
+
+  # joven from appsample
+
+  print_invoice(request,new_invoice)
+
   
-  print(f'new created invoice **** {new_invoice}')
+  
+  
   invno = 0
   invoice_data,invoice_total_qty,invoice_amount = data_list(request,invno)
 

@@ -34,16 +34,19 @@ class Invoice (models.Model):
   def __str__(self):
     return str(self.customer)
   
-  class InvoiceSummary(models.Model):
-    user=  user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)   
-    customer = models.ForeignKey(Customer,on_delete=models.PROTECT, null=True, blank=True)
-    invoice_date= models.DateTimeField(default=datetime.now, blank=True, null=True)
-    total_quantity=models.IntegerField(default=0, validators=[
-            MaxValueValidator(100),
-            MinValueValidator(1) ],blank=True, null=True)
-    total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)    
-    def __str__(self):
-      return str(self.customer)
+class InvoiceSummary(models.Model):
+  user=  user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)   
+
+  customer = models.ForeignKey(Customer,on_delete=models.PROTECT, null=True, blank=True)
+  invoice_no = models.IntegerField(default=0)
+
+  invoice_date= models.DateTimeField(default=datetime.now, blank=True, null=True)
+  total_quantity=models.IntegerField(default=0, validators=[
+          MaxValueValidator(100),
+          MinValueValidator(1) ],blank=True, null=True)
+  total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)    
+  def __str__(self):
+    return str(self.customer)
   
                       
 
