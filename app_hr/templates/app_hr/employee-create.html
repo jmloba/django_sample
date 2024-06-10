@@ -4,7 +4,7 @@
 
 {% block content %}
 <section id="employee-create">
-  <div class="my-container my-container-para  d-block " 
+  <div class="my-container my-container-para d-block " 
   style="--margin-top:5px; 
         --margin-right:5%;
         --margin-left: 5%; "
@@ -13,30 +13,65 @@
       <div class = "center">
         <h3 class="text-center">Create Employee</h3>
       </div>
-  
-      <div>
-        {% include 'app_hr/headerlink-create-employee.html' %}
-  
-      </div>
-  
-  
-      <div class="view-area">
-        <div class="entry-form">
+      <div class="view-area ">
+
+        <div class="view-items entry-form">
           <div id="img-box"> 
           </div>
 
-          <form id='p-form' action="" autocomplete="on">
-            {% csrf_token%}
-            {{form|crispy}}
-            <button type="submit" class="btn btn-mybtn" id="btn-create-employee" data-url="{% url 'app_hr:add-employee'%}">Submit</button>
-          </form>          
-          <div id="alert-box"> 
-            <p>colum 3</p>
+          <div class="form-div">
+            <form id='p-form' action="" enctype="multipart/form-data" autocomplete="on">
+              {% csrf_token%}
+              <!-- {{form|crispy}} -->
+              <div class="row">
+                <div class="form-row">
+                  <div class="form-group d-flex">
+                    <div class="form-group-item">`
+                      {{form.first_name|as_crispy_field}}
+                    </div>
+                    <div class="form-group-item">`
+                      {{form.last_name|as_crispy_field}}                  
+                    </div>
+                  </div>  
+                </div>
+                <div class="form-row">
+                  <div class="form-group d-flex">
+                    <div class="form-group-item">`
+                      {{form.designation|as_crispy_field}}
+                    </div>
+                    <div class="form-group-item">`
+                      {{form.email_address|as_crispy_field}}                  
+                    </div>
+                  </div>  
+                </div>     
+                <div class="form-row">
+                  <div class="form-group d-flex">
+                    <div class="form-group-item">`
+                      {{form.phone_number|as_crispy_field}}
+                    </div>
+                    <div class="form-group-item">`
+                      {{form.department|as_crispy_field}}                  
+                    </div>
+                  </div>  
+                </div>                             
+                <div class="form-row">
+                  <div class="form-group d-flex">
+                    <div class="form-group-item">`
+                      {{form.photo|as_crispy_field}}
+                    </div>
+                  </div>  
+
+                </div>     
+              </div>
+  
+  
+              <button type="submit" class="btn btn-mybtn" id="btn-create-employee" data-url="{% url 'app_hr:add-employee'%}">Submit</button>
+            </form>    
+
           </div>
-          
         </div>
-        <div class="  emp-list">
-          <div class="employee-list">
+
+        <div class="view-items emp-list">
             <table class="table table-striped">
               <thead>
                 <tr>
@@ -70,12 +105,13 @@
             
               </tbody>
             </table>
-  
-          </div>
-  
         </div>      
    
       </div>
+      
+      <div id="alert-box"> 
+      </div>
+
     </div>    
     
 

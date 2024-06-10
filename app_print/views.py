@@ -84,24 +84,26 @@ def print_body_data(c,row_data, y_axis,page_total):
     
   c.setFillColorCMYK(1,0,0,89)
 
-  c.setFont("Helvetica", 14)
+  c.setFont("Helvetica", 12)
 
   print(f'\n\n row data : \n {row_data}')
-
+  mitem = row_data['itemnumber']
   mdesc = row_data['description']
   mqty =  str(row_data['quantity'])
+  mprice =  str(row_data['price'])
   mamt = str(row_data['amount'])
 
   page_total += float(row_data['amount'])
   # mtotals +=row_data['amount']
-
-  c.drawString(-.5*inch, y_axis * inch, mdesc)
-  c.drawString(1*inch, y_axis * inch, mqty)
-  c.drawString(4*inch, y_axis * inch, mamt)
+  c.drawString(-.5*inch, y_axis * inch, mitem)
+  c.drawString(1.2*inch, y_axis * inch, mdesc)
+  c.drawString(4*inch, y_axis * inch, mqty)
+  c.drawString(5*inch, y_axis * inch, mprice)
+  c.drawString(6*inch, y_axis * inch, mamt)
   return page_total
 
 def get_invoice_to_print(new_invoice):
-  mdata = Invoice.objects.filter(invoice_no = new_invoice).values('invoice_no', 'description', 'quantity','price','amount')
+  mdata = Invoice.objects.filter(invoice_no = new_invoice).values('invoice_no','itemnumber', 'description', 'quantity','price','amount')
   invoice_list= list(mdata)   
 
   return invoice_list

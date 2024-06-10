@@ -7,7 +7,7 @@ image.addEventListener('change',()=>{
   const url = URL.createObjectURL(img_data)
 
   console.log(url)
-  imgBox.innerHTML= `<img src="${url}" width="100%">`
+  imgBox.innerHTML= `<img src="${url}" width="200px">`
 
 });
 
@@ -26,13 +26,15 @@ $('#btn-create-employee').on('click',function(e){
   var m_firstname = $('#id_first_name').val()
   var m_lastname = $('#id_last_name').val()
   var m_designation = $('#id_designation').val()
-
-  const image = document.getElementById('id_photo')
-
   var m_email = $('#id_email_address').val()
+  
   var m_phone = $('#id_phone_number').val()
   var m_department = $('#id_department').val()
+  let image = document.getElementById('id_photo')
 
+  
+  
+  
   let csrf_token = $('input[name=csrfmiddlewaretoken]').val()
 
   mythis = $(this)
@@ -50,6 +52,9 @@ $('#btn-create-employee').on('click',function(e){
   fd.append('department',m_department)
 
   fd.append('photo', image.files[0])
+
+
+
 
 
   $.ajax({

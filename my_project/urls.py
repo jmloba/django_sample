@@ -2,7 +2,10 @@
 from django.contrib import admin
 from django.urls import path, include
 from . import views
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
+from django.conf.urls.static import static
+from django.conf import settings
 app_name='main'
 
 urlpatterns = [
@@ -19,3 +22,5 @@ urlpatterns = [
     path('app_booking/',  include('app_booking.urls')),
     path('app_print/',  include('app_print.urls')),
 ]
+urlpatterns+= staticfiles_urlpatterns()
+urlpatterns+= static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -67,26 +67,19 @@
 }
 
 #employee-create .view-area{
-  display: flex;
-  flex-wrap: wrap;
-
-  justify-content: space-evenly;
-
-  align-items: start;
-  
-
-}
-#employee-create .entry-form{
-  background-color:var(--border-gold);
-  border-radius: 15px;
-
-  margin : 10px 20px;
-  padding : 10px 20px;
+  background-color: rgb(215, 185, 185);
+  display:flex;
+  /* flex-wrap:wrap; */
+  padding : 1em 1em;
 }
 
-#employee-profile .view-body{
-  display : flex;
+#employee-create .view-items{
+  background-color: aquamarine;
+  margin : 1em 1em;
+  padding : 1em;
+
 }
+
 
 
 

@@ -26,7 +26,7 @@
           {% csrf_token%}
           {{form|crispy}}
 
-          <input type="text" name ="stuid" id ="stuid">
+          <input type="hidden" name ="stuid" id ="stuid">
           
           <input type="button" id="btn-create-mastergrocery" class="btn 
           btn-mybtn" value="Save" data-url="{% url 'app_sales:grocerymaster-save-entry' %}">

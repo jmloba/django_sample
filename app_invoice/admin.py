@@ -3,9 +3,9 @@ from .models import Invoice,Ref_Table,InvoiceSummary
 
 # Register your models here.
 class InvoiceAdmin(admin.ModelAdmin):
-  list_display=('user','customer','invoice_no','invoice_date','description','quantity','price','amount')
+  list_display=('user','customer','invoice_no','invoice_date','itemnumber','description','quantity','price','amount')
   ordering=('-invoice_no','amount')
-  list_editable =('invoice_no','invoice_date','description','quantity','price','amount')
+  list_editable =('invoice_no','invoice_date','itemnumber','description','quantity','price','amount')
   filter_horizontal=()
   list_filter =()
   fieldsets=()

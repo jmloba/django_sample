@@ -26,7 +26,7 @@ def invoice_create(request):
 
   invoice_form =InvoiceForm()
   search_form = InvoiceSearchForm()
-  mdata = Invoice.objects.filter(user=request.user, invoice_no = 0 ).values('id','customer','customer__name','description','invoice_date','quantity','price','amount')
+  mdata = Invoice.objects.filter(user=request.user, invoice_no = 0 ).values('id','customer','customer__name','itemnumber','description','invoice_date','quantity','price','amount')
   invoice_db= list(mdata)  
   for i in invoice_db:
     i['invoice_date'] = reformat_date(i['invoice_date'] )
@@ -60,7 +60,7 @@ def reformat_date(datestr):
 
 
 def data_list(request,invno)  :
-  invoicedata =   Invoice.objects.filter(user=request.user, invoice_no = invno).values('id','customer','customer__name','invoice_no','description','invoice_date','quantity', 'price', 'amount')
+  invoicedata =   Invoice.objects.filter(user=request.user, invoice_no = invno).values('id','customer','customer__name','itemnumber','invoice_no','description','invoice_date','quantity', 'price', 'amount')
   invoice_total_qty=0
   invoice_amount=0
 
@@ -82,6 +82,7 @@ def save_invoice(request):
       amount = int( request.POST.get('quantity')) * int(request.POST.get('price'))
       if sid=='':
         s=Invoice(user=request.user,
+          itemnumber =     request.POST.get('itemnumber'),    
           customer=Customer.objects.get( id=request.POST.get('customer')),
           description= request.POST.get('description'),
           quantity = request.POST.get('quantity'),
@@ -92,6 +93,7 @@ def save_invoice(request):
       else:  
         s=Invoice(id=sid,
           user=request.user, 
+          itemnumber =  request.POST.get('itemnumber'),    
           customer=Customer.objects.get(id=request.POST.get('customer')),
           description= request.POST.get('description') , 
           quantity = request.POST.get('quantity'),

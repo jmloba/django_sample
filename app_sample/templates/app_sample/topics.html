@@ -10,20 +10,56 @@
         --margin-right:7%;
         --margin-left: 7%; ">
           <div class="card-list">
-
-        
             <div class="card" >
               <div class="card-body">
-                <h5 class="card-title">Forms</h5>
+                <h5 class="card-title">Invoice</h5>
                 <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
                 <p class="card-text">details.</p>
                 <div class="btn-group">
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_sample:bootstrap-box' %}">bootstrap box</a></button>
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_sample:sample_course' %}">course</a></button>
-                </div>
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_invoice:invoice-create' %}">Invoice Create</a></button>
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_invoice:date-formatting' %}">date formatting </a></button>
+                  <button class="btn btn-mybtn"><a  href="">dynamic form input</a></button>   
 
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_print:reprint-invoice' %}">Reprint invoice</a></button>  
+
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_print:print-invoice-tabular' %}">Print Tabular invoice tabular</a></button>                                                       
+
+                </div>
               </div>
             </div>
+            <div class="card" >
+              <div class="card-body">
+                <h5 class="card-title">Invoice</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                <p class="card-text">details.</p>
+                <div class="btn-group">
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_hr:create-employee' %}">Employee Entry</a></button>
+                  
+                </div>
+              </div>
+            </div>
+
+
+            <div class="card" >
+              <div class="card-body">
+                <h5 class="card-title">Import Files</h5>
+                <h6 class="card-subtitle mb-2 text-muted">Import Files from Excel</h6>
+                <p class="card-text">details.</p>
+                <div class="btn-group">
+                  <button class="btn btn-mybtn import-country" disabled="True" >
+                    <a  href="{% url 'app_person:import-file-excel' %}">Import Excel Country</a>
+                  </button>
+                  <button class="btn btn-mybtn import-country" disabled = True >
+                    <a  href="{% url 'app_person:import-cities-file-excel' %}">Import City - not working</a>
+                  </button>                  
+                </div>
+
+            
+             
+
+              </div>
+            </div>            
+        
 
             <div class="card" >
               <div class="card-body">
@@ -45,23 +81,8 @@
 
               </div>
             </div>       
-            <div class="card" >
-              <div class="card-body">
-                <h5 class="card-title">Invoice</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">details.</p>
-                <div class="btn-group">
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_invoice:invoice-create' %}">Invoice Create</a></button>
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_invoice:date-formatting' %}">date formatting </a></button>
-                  <button class="btn btn-mybtn"><a  href="">dynamic form input</a></button>   
 
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_print:reprint-invoice' %}">Reprint invoice</a></button>  
 
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_print:print-invoice-tabular' %}">Print Tabular invoice tabular</a></button>                                                       
-
-                </div>
-              </div>
-            </div>
             <div class="card" >
               <div class="card-body">
                 <h5 class="card-title">Program samples</h5>
@@ -69,48 +90,22 @@
                 <p class="card-text">details.</p>
                 <div class="btn-group">
                   <button class="btn btn-mybtn"><a  href="{% url 'app_sample:select-option' %}">select option</a></button>
-                </div>   
-                             
+
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_sample:bootstrap-box' %}">bootstrap box</a></button>
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_sample:sample_course' %}">course</a></button>
+    
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_sample:working-with-foreignkey' %}">ForeignKey</a></button>
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_sample:tasks' %}">Class Base 1</a></button>
+
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_hr:phone-add' %}">Phone Number -Employee</a></button>
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_sample:date-sample' %}">date sample</a></button>
+                  <button class="btn btn-mybtn"><a  href="{% url 'app_hr:context-processor' %}">Create Department</a></button>
+
+                </div>                           
 
 
               </div>
             </div>    
-            <div class="card" >
-              <div class="card-body">
-                <h5 class="card-title">Working with Foreignkey</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">details.</p>
-                <div class="btn-group">
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_sample:working-with-foreignkey' %}">ForeignKey</a></button>
-                </div>                
-              </div>
-            </div>                  
-
-            <div class="card" >
-              <div class="card-body">
-                <h5 class="card-title">Class Based</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">details.</p>
-                <div class="btn-group">
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_sample:tasks' %}">Class Base 1</a></button>
-
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_hr:phone-add' %}">Phone Number -Employee</a></button>
-                </div>
-              </div>
-            </div>
-
-            <div class="card" >
-              <div class="card-body">
-                <h5 class="card-title">Dates</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">details.</p>
-                <div class="btn-group">
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_sample:date-sample' %}">date sample</a></button>
-
-                </div>
-              </div>
-              
-            </div>
 
             <div class="card" >
               <div class="card-body">
@@ -126,33 +121,13 @@
                   </button>
                   <button class="btn btn-mybtn">
                     <a  href="{% url 'app_hr:crispy-add-photo' %}">crispy form add photo</a>
-                  </button>                      
-                </div>
-              </div>
-            </div>    
-            <div class="card" >
-              <div class="card-body">
-                <h5 class="card-title">Context Processor</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">details.</p>
-                <div class="btn-group">
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_hr:context-processor' %}">Create Department</a></button>
-                </div>
-              </div>
-            </div>  
-            <div class="card" >
-              <div class="card-body">
-                <h5 class="card-title">Posts</h5>
-                <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                <p class="card-text">details.</p>
-                    
-                <div class="btn-group">
+                  </button>           
                   <button class="btn btn-mybtn">
                     <a  href="{% url 'app_posts:posts' %}">post</a>
-                  </button>
-                </div>  
+                  </button>                             
+                </div>
               </div>
-            </div>    
+            </div>     
             <div class="card" >
               <div class="card-body">
                 <h5 class="card-title">How to use Ajax</h5>
@@ -161,7 +136,7 @@
                 <p><small>by :REading viles
                 <div class="btn-group">
                   <button class="btn btn-mybtn">
-                    <a  href="{% url 'app_sample:reading-text-file' %}">Read text file</a>
+                    <a  href="{% url 'app_sample:reading-text-file' %}">Read external files</a>
                   </button>
                 </div>  
           

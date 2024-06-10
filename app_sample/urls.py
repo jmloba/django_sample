@@ -27,6 +27,7 @@ urlpatterns = [
 
     path('order_delete/<str:pk>', views.order_delete , name ="order-delete"),
     re_path(r'^user_page/$',views.user_page, name='user-page'),
+    
     re_path(r'^account_setting/$',views.account_setting, name='account-setting'),
     
   

@@ -37,10 +37,13 @@ def rectangle_address(c):
     c.roundRect(2*inch, 8 * inch, 4.8*inch, 2.0 * inch, fill=1, stroke=1, radius=.1*inch)   
 def print_table_header(c,y_axis):    
   c.setFillColorCMYK(1,0,0,89)
-  c.setFont("Helvetica", 18)
-  c.drawString( -.5*inch, y_axis * inch, 'Description')
-  c.drawString( 1*inch, y_axis * inch, 'Quantity')
-  c.drawString( 4*inch, y_axis * inch, 'Amount')
+  c.setFont("Helvetica", 14)
+  c.drawString( -.5  * inch, y_axis * inch, 'Item #')
+  c.drawString( 1.2  * inch, y_axis * inch, 'Description')
+  c.drawString( 3.75 * inch, y_axis * inch, 'Quantity')
+  c.drawString( 5.0  * inch, y_axis * inch, 'Price')
+  c.drawString( 6    * inch, y_axis * inch, 'Amount')
+
 
 def print_pageno(c,y_axis,pageno):    
   c.setFillColor('#050C9C')

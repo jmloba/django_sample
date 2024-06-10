@@ -9,48 +9,31 @@
   style="--margin-top:5px; 
         --margin-right:5%;
         --margin-left: 5%; ">
+    <div class="container d-block">
+      <h3 class="text-center">Employee Profile</h3> 
+      <div class="employee-detail">
+        <div class="card" style="width: 20rem;">
+          <img class="card-img-top profile-pic" src="{{employee.photo.url}}" alt="Card image cap">
+          <div class="card-body">
+            {{employee.first_name}}  {{employee.last_name}}
+            <form action="" method="POST" enctype="multipart/form-data">
+              {%csrf_token%}
+              {{form.as_p}}
+              <input type="submit" class="btn btn-primary" name="Update Information">              
 
-
-    <div class="row">
-      <h5>employee form </h5>
-      {% include 'app_hr/headerlink-employee-profile.html'%}
-      {{employee}}
-
-      <div class="view-body">
-        <div class="col-md-3">
-          <div class="card card-body">
-            <a class="btn btn-warning" href="{% url 'app_hr:create-employee' %}">&#8592;Back to Profile</a>
-            <hr>
-            <h3 style="text-align : center;">Account Setting</h3>
-            <hr>
-            {{employee.fist_name}}
-
-            <img class="profile-pic" src="{{employee.photo.url}}" alt="profile pic">
-            
-          
-          </div>
-  
+            </form>
        
-          <div class="col-md-9">
-            <div class="card card-body">
-              <form method = 'POST' action="" enctype="multipart/form-data">
-                {%csrf_token%}
-                {{form.as_p}}
-                <input type="submit" class="btn btn-primary" name="Update Information">
-    
-              </form>
-    
-            </div>
-          </div>  
-  
+           
+
+
+          </div>
+        </div>
+        
       </div>
 
-
     </div>
-  </div>
-
 </section>
-<link rel="stylesheet" href="{% static 'css/custom-app-hr.css' %}">
+<link rel="stylesheet" href="{% static 'css/custom-app-hr-employee-profile.css' %}">
 
 {% endblock %}
 

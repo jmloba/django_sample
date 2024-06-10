@@ -7,7 +7,7 @@ class InvoiceForm(forms.ModelForm):
     class Meta:
         model = Invoice
         fields = [
-            'customer','description','quantity','price'
+            'customer','itemnumber','description','quantity','price'
         ]
 
 class InvoiceSearchForm(forms.ModelForm):       

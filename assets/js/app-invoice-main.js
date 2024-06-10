@@ -23,7 +23,7 @@ $(document).ready(function(){
   function html_record(x)  {
     html_template=''
     for ( i=0; i < x.length; i++ ){
-      html_template+='   <tr id="invoice-id-'+x[i].id+'" ><th scope="row">'+x[i].customer__name+'</th><td>'+x[i].invoice_date+'</td><td>'+x[i].description+'</td><td id="rec-quantity-'+x[i].id+'">'+x[i].quantity+'</td><td>'+x[i].price+'</td><td id="rec-amount-'+x[i].id+' ">'+x[i].amount+'</td><td><button class="btn btn-info btn-sm"  data-sid="'+x[i].id+'"    id="btn-invoice-edit" data-url="/app_invoice/invoice-edit/">  <i class="bi bi-pencil"></i> </button>&ensp;&ensp;&ensp;<button class="btn btn-danger btn-sm"  data-sid="'+x[i].id+'"  id="btn-invoice-delete" data-url="/app_invoice/invoice-delete/"> <i class="bi bi-trash3"></i></button></td> </tr>'
+      html_template+='   <tr id="invoice-id-'+x[i].id+'" ><th scope="row">'+x[i].customer__name+'</th><td>'+x[i].invoice_date+'</td><td>'+x[i].itemnumber+'</td><td>'+x[i].description+'</td><td id="rec-quantity-'+x[i].id+'">'+x[i].quantity+'</td><td>'+x[i].price+'</td><td id="rec-amount-'+x[i].id+' ">'+x[i].amount+'</td><td><button class="btn btn-info btn-sm"  data-sid="'+x[i].id+'"    id="btn-invoice-edit" data-url="/app_invoice/invoice-edit/">  <i class="bi bi-pencil"></i> </button>&ensp;&ensp;&ensp;<button class="btn btn-danger btn-sm"  data-sid="'+x[i].id+'"  id="btn-invoice-delete" data-url="/app_invoice/invoice-delete/"> <i class="bi bi-trash3"></i></button></td> </tr>'
 
     }    
 
@@ -38,6 +38,7 @@ $(document).ready(function(){
     let html_template=''
     let id = $('#stuid').val()  
     let customer = $('#id_customer').val()  
+    let itemnumber = $('#id_itemnumber').val()  
    
     let description = $('#id_description').val()  
     let quantity = $('#id_quantity').val()  
@@ -64,6 +65,7 @@ $(document).ready(function(){
     } else {
       mydata={'csrfmiddlewaretoken':csrf_token,
       'stuid':id, 
+      'itemnumber': itemnumber,
       'description':description,
       'customer':customer,
       'quantity': quantity, 'price':price

@@ -21,12 +21,16 @@ urlpatterns=[
 
     path('create_employee/',views.create_employee, name 
     ='create-employee'),
+
     
     path('add_employee/',views.add_employee, name 
     ='add-employee'),
+    
 
     
     re_path(r'^employee_delete/$', views.employee_delete ,name='employee-delete'),
+
+    re_path(r'^employee-delete-with-file/$', views.employee_delete_with_file ,name='employee-delete-with-file'),
 
     re_path(r'^context_processor/$', views.context_processor ,name='context-processor'),
 

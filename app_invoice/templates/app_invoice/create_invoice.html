@@ -35,8 +35,11 @@
 
                         </div>
                       </div>
+
                       <div class="form-row ">
                         <div class="form-group d-flex">
+                          {{invoice_form.itemnumber|as_crispy_field}}
+
                           {{invoice_form.description|as_crispy_field}}
                         </div>
                  
@@ -85,6 +88,8 @@
                   <tr >
                     <th scope="col">Customer</th>
                     <th scope="col">Date</th>
+                    <th scope="col">Item Number</th>
+
                     <th scope="col">Description</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Price</th>                  
@@ -98,6 +103,8 @@
                   <tr id="invoice-id-{{item.id}}">
                     <th scope="row">{{item.customer__name}}</th>
                     <td>{{item.invoice_date}}</td>
+                    <td>{{item.itemnumber}}</td>
+
                     <td>{{item.description}}</td>
                     <td id="rec-quantity-{{item.id}}">{{item.quantity}}</td>
                     <td>{{item.price}}</td>
@@ -150,22 +157,6 @@
       </div>
   
     </div>
-
-    <div class="div-links">
-      <h5>Export to excel</h5>
-      <div class="div-buttons">
-        <button class="btn btn-mybtn import-country" disabled=True>
-          <a  href="#{% url 'app_person:import-file-excel' %}">Import Excel Country</a>
-        </button>
-        
-        <button class="btn btn-mybtn" disabled=True>
-          <a  href="{% url 'app_person:import-cities-file-excel' %}">Import Excel City</a>
-        </button>
-      </div>
-    </div>
-
-
-
   </div>
 
 </section>

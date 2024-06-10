@@ -24,6 +24,25 @@ class EmployeeForm(forms.ModelForm):
             'phone_number',
             'department',)
     
+
+class EmployeeForm_files(forms.ModelForm):
+  first_name = forms.CharField(required=True)
+
+  class Meta:
+    model=Employee
+    fields=('first_name',
+            'last_name',
+            'photo',
+            'myportfolio',
+            'designation',
+            'email_address',
+            'phone_number',
+            'department',)
+    
+    widgets={
+      'myportfolio': forms.FileInput(attrs={'accept':'.pdf, .png, .jpg'})
+    }    
+    
   def clean_first_name(self):
     first_name =self.cleaned_data.get('first_name')
     if (first_name==''):

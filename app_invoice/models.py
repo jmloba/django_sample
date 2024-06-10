@@ -23,6 +23,8 @@ class Invoice (models.Model):
                                  null=True)
 
   invoice_date  = models.DateTimeField(default=datetime.now, blank=True, null=True)
+  
+  itemnumber = models.CharField(max_length=20, blank=True, null=True)
 
   description = models.CharField(max_length=50, blank=True, null=True) 
   quantity = models.IntegerField(default=1, validators=[
@@ -38,6 +40,7 @@ class InvoiceSummary(models.Model):
   user=  user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)   
 
   customer = models.ForeignKey(Customer,on_delete=models.PROTECT, null=True, blank=True)
+
   invoice_no = models.IntegerField(default=0)
 
   invoice_date= models.DateTimeField(default=datetime.now, blank=True, null=True)

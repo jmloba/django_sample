@@ -11,7 +11,7 @@ html {
   background: #7abecc !important;
   font-family: "Roboto", sans-serif;
   font-weight: 400;
-  font-size: 14;
+  font-size: 12;
 }
 
 
@@ -130,7 +130,7 @@ html {
 }
 .home-btn{
   color:var(--color-fb-blue );
-  font-size: 30px;
+  font-size: 20px;
 }
 
 

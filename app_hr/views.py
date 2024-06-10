@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,HttpResponse
 from django.http import  JsonResponse,response
-from .forms import DepartmentForm,PhoneForm, EmployeeForm, PhotoForm
+from .forms import DepartmentForm,PhoneForm, EmployeeForm, PhotoForm, EmployeeForm_files
 
 from .models import Department, Phone, Employee
 
@@ -51,10 +51,16 @@ def department_create(request):
   return render(request,'app_hr/department_create.html', context)
 
 def employee_profile(request,pk=None):
-    employee = Employee.objects.filter(id=pk)
-    
-    context={'employee':employee}
-    return render(request,'app_hr/employee_profile.html',context )
+  employee = Employee.objects.get(id=pk)
+  form= EmployeeForm(instance = employee)
+  if request.method=='POST':
+    form = EmployeeForm(request.POST, request.FILES, instance = employee)
+    if form.is_valid():
+      form.save()
+
+  context={'form':form,"employee":employee }
+
+  return render(request,'app_hr/employee_profile.html',context )
 
 def create_employee(request):
   employees = Employee.objects.all()
@@ -63,12 +69,29 @@ def create_employee(request):
   context={'employees':employees, 'form':form}
   return render(request,'app_hr/employee-create.html', context)  
 
+
+# create employee with attachement file
+def get_employees(request):
+  employees = Employee.objects.all()
+  emp_list = list(employees)
+  return employees
+
+
+
+
 def add_employee(request):
+  print('adding employees')
   form = EmployeeForm(request.POST or None , request.FILES or None)
   data={}
-  if is_ajax(request):
+  
+  if request.method=='POST':
+
+    form = EmployeeForm(request.POST  , request.FILES )
     if form.is_valid():
+      print(f' form add employee is valid form ')
       instance = form.save()
+
+      
       data['id']=instance.id
       data['first_name']= instance.first_name
       data['last_name']= instance.last_name
@@ -78,14 +101,25 @@ def add_employee(request):
       data['status']= 'ok'
       return JsonResponse(data)
     else:
+      print(f'invalid form ')
       data['error'] = 'data not saved, invalid form'
       return JsonResponse(data)
-  else :
-      data['error'] = 'not an ajax request'
-      return JsonResponse(data)
+ 
 
-    
+  
+
+      
 def employee_delete(request)    :
+
+  if request.method == "POST":  
+    id = request.POST.get("sid")
+    employee = Employee.objects.get(pk=id)
+    employee.delete()
+    return JsonResponse({"status": 1})
+  else:
+    return JsonResponse({"status": 0})  
+  
+def employee_delete_with_file(request)    :
 
   if request.method == "POST":  
     id = request.POST.get("sid")
