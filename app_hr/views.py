@@ -57,9 +57,7 @@ def employee_profile(request,pk=None):
     form = EmployeeForm(request.POST, request.FILES, instance = employee)
     if form.is_valid():
       form.save()
-
   context={'form':form,"employee":employee }
-
   return render(request,'app_hr/employee_profile.html',context )
 
 def create_employee(request):

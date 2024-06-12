@@ -19,12 +19,10 @@ urlpatterns=[
 
     path('crispy_add_photo/',views.crispy_add_photo, name ='crispy-add-photo'),
 
-    path('create_employee/',views.create_employee, name 
-    ='create-employee'),
+    path('create_employee/',views.create_employee, name ='create-employee'),
 
     
-    path('add_employee/',views.add_employee, name 
-    ='add-employee'),
+    path('add_employee/',views.add_employee, name ='add-employee'),
     
 
     

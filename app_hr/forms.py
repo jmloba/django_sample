@@ -22,7 +22,7 @@ class EmployeeForm(forms.ModelForm):
             'designation',
             'email_address',
             'phone_number',
-            'department',)
+            'department','myportfolio')
     
 
 class EmployeeForm_files(forms.ModelForm):

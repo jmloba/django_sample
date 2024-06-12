@@ -31,9 +31,8 @@ $('#btn-create-employee').on('click',function(e){
   var m_phone = $('#id_phone_number').val()
   var m_department = $('#id_department').val()
   let image = document.getElementById('id_photo')
+  let myportfolio = document.getElementById('id_myportfolio')
 
-  
-  
   
   let csrf_token = $('input[name=csrfmiddlewaretoken]').val()
 
@@ -52,15 +51,12 @@ $('#btn-create-employee').on('click',function(e){
   fd.append('department',m_department)
 
   fd.append('photo', image.files[0])
-
-
-
-
-
+  fd.append('myportfolio',myportfolio.files[0])
   $.ajax({
     type : 'POST',
     url:url,
-    enctype:'multipart/form-data',
+    contentType:false,
+    processData:false,
     data:fd,
     success:function(response){
       

@@ -1,17 +1,26 @@
 #employee-profile .employee-detail {
   display : flex;
+  flex-wrap:wrap;
+  
   justify-content: space-evenly;
 }
+#employee-profile .div-item{
+  background-color: brown;
+  margin : 1em 1em;
+
+}
+
 #employee-profile .card{
   width : 40em
 }
-#employee-profile .card .card-img-top{
-  background-color: rgb(208, 185, 185);
-  padding : 1em 1em;
-  max-width :20em;
-  width :18em;
-  margin: auto;
+#employee-profile .item-pic{
+  width:20em
+}
 
-  justify-content: space-evenly;
-  
+#employee-profile .form-group{
+  display :flex;
+
+}
+#employee-profile .form-group-item{
+  margin : 0 1em;
 }

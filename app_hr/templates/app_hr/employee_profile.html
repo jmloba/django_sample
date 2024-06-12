@@ -6,30 +6,61 @@
 {% block content %}
 <section id="employee-profile">
   <div class="my-container my-container-para " 
-  style="--margin-top:5px; 
+  style="--margin-top:9em; 
         --margin-right:5%;
-        --margin-left: 5%; ">
+        --margin-left: 5%;--margin-bottom: 1em; ">
+
     <div class="container ">
       <h3 class="text-center">Employee Profile</h3> 
       <div class="employee-detail">
-        <div class="card">
+        
+        <div class="div-item item-pic">
+          <img class="card-img-top profile-pic" src="{{employee.photo.url}}" alt="employee photo">
           
-
-          <img class="card-img-top profile-pic" src="{{employee.photo.url}}" alt="Card image cap">
-          <div class="card-body">
-            
-            <form action="" method="POST" enctype="multipart/form-data">
-              {%csrf_token%}
-              {{form |crispy}}
-              <input type="submit" class="btn btn-primary" name="Update Information">              
-
-            </form>
-       
-           
-
-
-          </div>
         </div>
+        <div class="div-item item-details">
+          <form action="" method="POST" enctype="multipart/form-data">
+            {%csrf_token%}
+            <!-- {{form |crispy}} -->
+            <div class="form-row">
+              <div class="form-group"> 
+                <div class="form-group-item">
+                {{form.first_name|as_crispy_field}}
+                </div>
+                <div class="form-group-item">
+                  {{form.last_name|as_crispy_field}}
+                </div>
+              </div>  
+              <div class="form-group"> 
+                <div class="form-group-item">
+                {{form.designation|as_crispy_field}}
+                </div>
+                <div class="form-group-item">
+                  {{form.email_address|as_crispy_field}}
+                </div>
+              </div>     
+              <div class="form-group"> 
+                <div class="form-group-item">
+                {{form.phone_number|as_crispy_field}}
+                </div>
+                <div class="form-group-item">
+                  {{form.department|as_crispy_field}}
+                </div>
+              </div>                                         
+              <div class="form-group"> 
+                <div class="form-group-item">
+                {{form.myportfolio|as_crispy_field}}
+                </div>
+              </div>                                         
+
+            </div>
+
+            <input type="submit" class="btn btn-primary" name="Update Information">              
+
+          </form>
+
+        </div>  
+  
         
       </div>
 

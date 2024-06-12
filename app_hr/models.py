@@ -11,7 +11,7 @@ from django.dispatch import receiver
 
 
 
-ext_validator =FileExtensionValidator(['png','jpg','pdf'])
+ext_validator =FileExtensionValidator(['png','jpg','pdf','jpeg'])
 
 # def validate_file_mimetype(file):
 #   accept = ['images/png','images/jpg', 'employee_images/png','employee_images/jpg','employee_portfolio/pdf' ]
