@@ -1,23 +1,21 @@
 .navbar{
   z-index: 1000;
+  position : fixed;
+  top : 0;
+  width: 100%; /* Full width */
+  padding : 0;
+  
 
 }
-.navbar-text span{
-  font-family: "Dancing+Script", sans-serif;
-  font-weight: 600;
-  
-  font-style: italic;
-  font-size: 30;
-  color : rgb(99, 12, 154);
+
+#logo-text{
+  color : rgb(27, 18, 133);
 }
+
 .navbar a {
   text-decoration: None;
 }
-.navbar-text span-b{
-  font-family: "Dancing+Script", sans-serif;
-  font-weight: 600;
-  
-  font-style: italic;
-  font-size: 30;
-  color : rgb(7, 76, 75);
+
+.nav p span.span-b{
+  color : rgb(189, 94, 159);
 }

@@ -6,9 +6,10 @@
 
 
 <section id="topics">
-  <div class="my-container my-container-para d-block" style="--margin-top:20px; 
+  <div class="my-container my-container-para d-block" style="--margin-top:8em; 
         --margin-right:7%;
-        --margin-left: 7%; ">
+        --margin-left: 7%; --margin-bottom: 1em; 
+        ">
           <div class="card-list">
             <div class="card" >
               <div class="card-body">
@@ -17,12 +18,13 @@
                 <p class="card-text">details.</p>
                 <div class="btn-group">
                   <button class="btn btn-mybtn"><a  href="{% url 'app_invoice:invoice-create' %}">Invoice Create</a></button>
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_invoice:date-formatting' %}">date formatting </a></button>
-                  <button class="btn btn-mybtn"><a  href="">dynamic form input</a></button>   
 
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_print:reprint-invoice' %}">Reprint invoice</a></button>  
+            
+                  <button class="btn btn-mybtn">
+                    <a  href="{% url 'app_print:reprint-invoice' %}">Reprint invoice using form.Forms</a>
+                  </button>  
 
-                  <button class="btn btn-mybtn"><a  href="{% url 'app_print:print-invoice-tabular' %}">Print Tabular invoice tabular</a></button>                                                       
+                                                             
 
                 </div>
               </div>
@@ -76,6 +78,9 @@
                 <div class="btn-group">
                   <button class="btn btn-mybtn"><a  href=''>Chained Dropdown List</a></button>
                 </div>
+                <button class="btn btn-mybtn"><a  href="{% url 'app_invoice:date-formatting' %}">date formatting </a></button>
+                <button class="btn btn-mybtn"><a  href="">dynamic form input</a></button>   
+                <button class="btn btn-mybtn"><a  href="{% url 'app_print:print-invoice-tabular' %}">Print Tabular invoice tabular</a></button>     
               
 
 

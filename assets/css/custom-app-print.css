@@ -6,3 +6,30 @@
 #invoice-print table{
   border-radius: 10px;;
 }
+
+#search-reprint .my-constainer{
+  display : block;
+
+}
+
+#search-reprint #input-form{
+  background-color: var( --colorgold2);
+  padding : 2em 2em;
+  width : 20em;
+}
+
+#search-reprint .reprint-view{
+
+  padding: 1em 1em ;
+  display : flex;
+  flex-wrap: wrap;
+  justify-content : space-evenly;
+
+
+}
+#search-reprint form label{
+  color : white;
+}
+#search-reprint .div-item{
+  margin:10px 10px;
+}

@@ -1,5 +1,8 @@
-from django.shortcuts import render,HttpResponse
-from app_invoice.models import Invoice
+
+import subprocess
+from django.shortcuts import render,HttpResponse,redirect
+from app_invoice.models import Invoice, InvoiceSummary
+from django.http import JsonResponse
 
 from django.db.models import Sum, Q
 from reportlab.pdfgen import canvas
@@ -13,10 +16,31 @@ from reportlab.rl_config import defaultPageSize
 from reportlab.lib.units import inch
 
 from .invtemplate import print_template,reference_code_print
+from .forms import SearchForm
+
+
+def reprint_invoice(request):
+  invoice_summary = InvoiceSummary. objects.filter(invoice_no = 0)
+  form = SearchForm()
+  if request.method == 'POST':
+    form = SearchForm(request.POST)
+    if form.is_valid():
+      invoice = request.POST.get('invoiceno')
+
+      invoice_summary = InvoiceSummary. objects.filter(invoice_no = invoice)
+
+      context={'form':form,'invoice_summary': invoice_summary,}
+      print(f'invoice *** : {invoice}' )
+      return render(request,'app_print/reprint-invoice.html' ,context ) 
+    else:
+      print('form is invalid')
+
+
+  context={ 'form':form }
+  return render(request,'app_print/reprint-invoice.html' ,context ) 
 
 
 
-# Create your views here.
 
 
 def print_invoice_now(invoice_list,pdf_path,invoice_no):
@@ -31,13 +55,9 @@ def print_invoice_now(invoice_list,pdf_path,invoice_no):
   page_total = 0.0
   g_total = 0.0
   pageno =1
-  
   c=canvas.Canvas(mypath, pagesize=A4)
   c.translate(inch, inch)  # x y position using inch  
-
   c,pageno = print_template(c,pageno,invoice_no)  
-
-
   for row_number, row_data in enumerate(invoice_list):
     # print_letter_heading(c)
     rowcount += 1
@@ -59,6 +79,8 @@ def print_invoice_now(invoice_list,pdf_path,invoice_no):
   print_page_grand_total(c,g_total)
   c.showPage()
   c.save()
+  # to open pdf
+  subprocess.Popen([mypath], shell=True)
 
 def print_pagetotal(c,page_total):
     c.setFillColor('#071952')
@@ -105,6 +127,7 @@ def print_body_data(c,row_data, y_axis,page_total):
 def get_invoice_to_print(new_invoice):
   mdata = Invoice.objects.filter(invoice_no = new_invoice).values('invoice_no','itemnumber', 'description', 'quantity','price','amount')
   invoice_list= list(mdata)   
+  print(f'invoice list : {invoice_list}')
 
   return invoice_list
 
@@ -123,11 +146,32 @@ def print_invoice(request,new_invoice):
     print('nothing to print')
   context={'invoice_list':invoice_list ,'mypath':mypath  }
   return render(request,'app_print/print-invoice.html' ,context ) 
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
-def reprint_invoice(request):
-  context={  }
-  return render(request,'app_print/reprint-invoice.html' ,context ) 
 
+
+# pass value
+def print_invoice_ajax(request):
+  if is_ajax(request):
+    new_invoice = int( request.POST['new_invoice'])
+    print(f'\n new invoice : {new_invoice}, {type (new_invoice)}')
+    invoice_list = get_invoice_to_print(new_invoice)
+    if invoice_list==None:
+      print('no records')
+      response = {'status':'No Value', 'Message': 'invoice not found'}
+      return JsonResponse(response)
+    if  invoice_list:
+      mypath = 'c:/reportlab/invoice.pdf'
+      print_invoice_now(invoice_list,mypath,new_invoice)
+      response = {'status':'Success', 'Message': 'invoice has been printed'}
+      return JsonResponse(response)
+    else  :
+      mypath=''
+      print('nothing to print')
+      response = {'status':'No Record Found', 'Message': 'No invoice found from the table'}
+      return JsonResponse(response)
+  
 
 
 def add_all_values (qs,simple_list):

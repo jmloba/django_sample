@@ -1,4 +1,6 @@
 $(document).ready(function(){
+
+
   let clear_data_entries=() =>{
     $('#stuid').val('')
     $('#id_description').val('')

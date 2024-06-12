@@ -44,9 +44,11 @@ class InvoiceSummary(models.Model):
   invoice_no = models.IntegerField(default=0)
 
   invoice_date= models.DateTimeField(default=datetime.now, blank=True, null=True)
+  
   total_quantity=models.IntegerField(default=0, validators=[
           MaxValueValidator(100),
           MinValueValidator(1) ],blank=True, null=True)
+  
   total_amount = models.DecimalField(max_digits=10, decimal_places=2, default=0, blank=True, null=True)    
   def __str__(self):
     return str(self.customer)

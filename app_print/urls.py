@@ -10,6 +10,9 @@ app_name='app_print'
 
 urlpatterns=[
     path('print-invoice/',views.print_invoice, name ='print-invoice'),
+    path('print-invoice-ajax/',views.print_invoice_ajax, name ='print-invoice-ajax'),
+        
+    
     path('reprint-invoice/',views.reprint_invoice, name ='reprint-invoice'),
 
     path('print-tabular/',views.print_invoice_tabular, name ='print-invoice-tabular'),

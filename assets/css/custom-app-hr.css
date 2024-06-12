@@ -67,19 +67,30 @@
 }
 
 #employee-create .view-area{
-  background-color: rgb(215, 185, 185);
+  background-color: rgb(201, 172, 172);
   display:flex;
-  /* flex-wrap:wrap; */
+  flex-wrap:wrap;
   padding : 1em 1em;
+  justify-content: space-evenly;
 }
 
 #employee-create .view-items{
-  background-color: aquamarine;
+  background-color: rgb(206, 223, 217);
+  max-width: 40em;
   margin : 1em 1em;
   padding : 1em;
 
 }
 
-
-
+#employee-create .entry-form{
+  
+  background-color: rgb(208, 212, 199);
+  display: flex;
+  justify-content: space-evenly;
+}
+#employee-create .form-group{
+  display:flex;
+  flex-wrap: wrap;
+  justify-content:space-between;
+}
 

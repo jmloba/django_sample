@@ -1,0 +1,17 @@
+#employee-profile .employee-detail {
+  display : flex;
+  justify-content: space-evenly;
+}
+#employee-profile .card{
+  width : 40em
+}
+#employee-profile .card .card-img-top{
+  background-color: rgb(208, 185, 185);
+  padding : 1em 1em;
+  max-width :20em;
+  width :18em;
+  margin: auto;
+
+  justify-content: space-evenly;
+  
+}

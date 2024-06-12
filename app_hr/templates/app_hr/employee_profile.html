@@ -1,5 +1,5 @@
 {% extends 'main/base.html'%}
-{% load widget_tweaks %}
+{% load crispy_forms_tags %}
 {% load static %}
 
 
@@ -9,16 +9,18 @@
   style="--margin-top:5px; 
         --margin-right:5%;
         --margin-left: 5%; ">
-    <div class="container d-block">
+    <div class="container ">
       <h3 class="text-center">Employee Profile</h3> 
       <div class="employee-detail">
-        <div class="card" style="width: 20rem;">
+        <div class="card">
+          
+
           <img class="card-img-top profile-pic" src="{{employee.photo.url}}" alt="Card image cap">
           <div class="card-body">
-            {{employee.first_name}}  {{employee.last_name}}
+            
             <form action="" method="POST" enctype="multipart/form-data">
               {%csrf_token%}
-              {{form.as_p}}
+              {{form |crispy}}
               <input type="submit" class="btn btn-primary" name="Update Information">              
 
             </form>

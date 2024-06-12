@@ -58,13 +58,8 @@ def reformat_date(val):
   print(f'reformatting val: {val}')
   #  abbreviated month %b
   #  abbreviated full month %B
-  
-  
   # val = val.strftime("%B %d, %Y, %H:%M ")
-
   # val = val.strftime("%B %d, %Y, %I:%M %p")
-
   val = val.strftime("%Y/%m/%d, %I:%M %p")
-
   return val
 

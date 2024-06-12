@@ -13,19 +13,19 @@
       <div class = "center">
         <h3 class="text-center">Create Employee</h3>
       </div>
-      <div class="view-area ">
-
+      <div id="alert-box"> 
+      </div>
+      <div class="view-area">
         <div class="view-items entry-form">
-          <div id="img-box"> 
-          </div>
-
-          <div class="form-div">
+          <div class="form-div ">
+            <div id="img-box"> 
+            </div>
             <form id='p-form' action="" enctype="multipart/form-data" autocomplete="on">
               {% csrf_token%}
               <!-- {{form|crispy}} -->
-              <div class="row">
+              <div class="row d-flex">
                 <div class="form-row">
-                  <div class="form-group d-flex">
+                  <div class="form-group">
                     <div class="form-group-item">`
                       {{form.first_name|as_crispy_field}}
                     </div>
@@ -35,7 +35,7 @@
                   </div>  
                 </div>
                 <div class="form-row">
-                  <div class="form-group d-flex">
+                  <div class="form-group">
                     <div class="form-group-item">`
                       {{form.designation|as_crispy_field}}
                     </div>
@@ -45,7 +45,7 @@
                   </div>  
                 </div>     
                 <div class="form-row">
-                  <div class="form-group d-flex">
+                  <div class="form-group">
                     <div class="form-group-item">`
                       {{form.phone_number|as_crispy_field}}
                     </div>
@@ -56,7 +56,7 @@
                 </div>                             
                 <div class="form-row">
                   <div class="form-group d-flex">
-                    <div class="form-group-item">`
+                    <div class="form-group-item">
                       {{form.photo|as_crispy_field}}
                     </div>
                   </div>  
@@ -70,7 +70,6 @@
 
           </div>
         </div>
-
         <div class="view-items emp-list">
             <table class="table table-striped">
               <thead>
@@ -106,16 +105,8 @@
               </tbody>
             </table>
         </div>      
-   
       </div>
-      
-      <div id="alert-box"> 
-      </div>
-
     </div>    
-    
-
-
 </section>
 <link rel="stylesheet" href="{% static 'css/custom-app-hr.css' %}">
 
