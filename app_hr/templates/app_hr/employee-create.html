@@ -81,6 +81,8 @@
                   <th scope="col">Last</th>
                   <th scope="col">Designation</th>
                   <th scope="col">Department</th>
+                  <th scope="col">photo</th>
+
                   <th scope="col">Actions</th>
                 </tr>
   
@@ -92,6 +94,19 @@
                   <td>{{employee.last_name}}</td>
                   <td>{{employee.designation}}</td>
                   <td>{{employee.department}}</td>
+                  {%if employee.photo %}
+                    <td>
+                      <img src="{{employee.photo.url}}" style="width : 2em;" alt="" class='product-size'>
+                    </td>      
+                  {% else %}  
+                  <td>
+                    <img src="{% static 'images/default-image.png'%}" style="width : 2em;" alt="" class='product-size'>
+
+                  </td>
+                    
+                  {% endif %}
+                  
+                  
                   <td><a href="{% url 'app_hr:employee-profile' employee.id %}">view</a>
                     &ensp;&ensp;
                     <button class="btn btn-danger btn-sm " 

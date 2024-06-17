@@ -41,11 +41,7 @@ urlpatterns = [
     re_path(r'^foreignkey-sample/$',views.foreign_key_samples, name='working-with-foreignkey'),
 
     re_path(r'^select-option-sample/$',views.select_option, name='select-option'),
+
  
-
-
-
-
-
-
+ 
 ]

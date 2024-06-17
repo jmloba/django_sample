@@ -15,10 +15,6 @@ from reportlab.lib.units import inch
 from reportlab.lib.pagesizes import A4, letter
 
 
-
-
-
-
 # Create your views here.
 def invoice_create(request):
   title ="Invoice Section"

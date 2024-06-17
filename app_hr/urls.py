@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 
+
 app_name='app_hr'
 urlpatterns=[
     path('department_list/',views.department_list , name ='department-list'),
@@ -32,8 +33,11 @@ urlpatterns=[
 
     re_path(r'^context_processor/$', views.context_processor ,name='context-processor'),
 
-
-
+    re_path(r'^print-profile/$', views.print_profile ,name='print-profile'),
+    re_path(r'^password-protected/$', views.password_protected ,name='password-protected'),
+            
+        
+  
 ]
 urlpatterns+= staticfiles_urlpatterns()
 urlpatterns+= static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

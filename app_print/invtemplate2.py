@@ -34,7 +34,7 @@ def print_heading(c):
 def print_line(c, x1,y1,x2,y2,line_width) : 
   c.setLineWidth(line_width)
   c.setFillColorRGB(1,0,0)  # fill color red
-  # c.rect(1*inch,3*inch, 3*inch,5*inch)
+  
   c.line(x1*inch,y1*inch, x2*inch,y2*inch )
 
 

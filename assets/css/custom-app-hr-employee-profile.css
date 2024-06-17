@@ -5,8 +5,16 @@
   justify-content: space-evenly;
 }
 #employee-profile .div-item{
-  background-color: brown;
+  /* background-color: brown; */
   margin : 1em 1em;
+
+}
+#employee-profile .item-details{
+  padding : 1em 1em;
+  border: var(--colorgold1);
+  border-style: solid ;
+  border-radius: 15px;
+  border-width: 4px;
 
 }
 
@@ -16,6 +24,7 @@
 #employee-profile .item-pic{
   width:20em
 }
+
 
 #employee-profile .form-group{
   display :flex;

@@ -17,6 +17,9 @@ from reportlab.lib.units import inch
 
 from .invtemplate import print_template,reference_code_print
 from .forms import SearchForm
+from .reportlab_passwordprotected import print_password_protected
+from .reportlab_invoice_template import invoice_template
+
 
 
 def reprint_invoice(request):
@@ -39,14 +42,9 @@ def reprint_invoice(request):
   context={ 'form':form }
   return render(request,'app_print/reprint-invoice.html' ,context ) 
 
-
-
-
-
 def print_invoice_now(invoice_list,pdf_path,invoice_no):
   mypath = pdf_path
-  
-  
+
   rowcount =1
   global mtotals 
   mtotals= 0.0
@@ -58,6 +56,7 @@ def print_invoice_now(invoice_list,pdf_path,invoice_no):
   c=canvas.Canvas(mypath, pagesize=A4)
   c.translate(inch, inch)  # x y position using inch  
   c,pageno = print_template(c,pageno,invoice_no)  
+  
   for row_number, row_data in enumerate(invoice_list):
     # print_letter_heading(c)
     rowcount += 1
@@ -100,12 +99,8 @@ def print_page_grand_total(c, g_total):
     c.setFillColor('#fd1f1f')
     c.drawString(2*inch,1.7*inch, str(g_total))
 
-
 def print_body_data(c,row_data, y_axis,page_total):
-
-    
   c.setFillColorCMYK(1,0,0,89)
-
   c.setFont("Helvetica", 12)
 
   print(f'\n\n row data : \n {row_data}')
@@ -149,9 +144,48 @@ def print_invoice(request,new_invoice):
 def is_ajax(request):
     return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
 
-
-
 # pass value
+def reportlab(request):
+  context={  }
+  return render(request,'app_print/reportlab.html' ,context ) 
+
+def reportlab_password_protected(request):
+  print(f'procedure reportlab pasword protected')
+  if request.method == 'POST':
+    if is_ajax(request):
+      name_pass  =  request.POST['name_pass']
+
+      print(f'ajax request : name :{name_pass}')
+      response = {'status':'Success', 'Message': 'ajax request - password protected'}
+      return JsonResponse(response)
+    else :
+      response = {'status':'Success', 'Message': 'not ajax request'}
+      return JsonResponse(response)
+  else :
+      file_password ='Mike2454'
+      mypath = 'c:/reportlab/password_protected.pdf'
+      if print_password_protected(request,mypath,file_password):
+        subprocess.Popen([mypath], shell=True)
+
+      name_pass  =  request.GET['mname']
+      response = {'status':'not POST', 'Message': 'request is not post !!!'+name_pass}
+      return JsonResponse(response)
+
+def reportlab_invoice_template(request):
+  if request.method == 'GET':
+      file_password ='Mike2454'
+      mypath = 'c:/reportlab/invoice_template.pdf'
+      
+      if invoice_template(request,mypath):
+        subprocess.Popen([mypath], shell=True)
+
+      name_pass  =  request.GET['mname']
+      response = {'status':'Success', 'Message': 'request is not post !!!'+name_pass}
+      return JsonResponse(response)
+
+  
+
+
 def print_invoice_ajax(request):
   if is_ajax(request):
     new_invoice = int( request.POST['new_invoice'])
@@ -206,8 +240,6 @@ def  create_simple_table(invno):
   simple_list.append(get_tableheader(qs))
   simple_list = add_all_values(qs,simple_list)
   print(f'\n\nsimple list : \n{simple_list}') 
-  
-
 
 def print_invoice_tabular(request):
   mypath='c:/reportlab/tabular.pdf'

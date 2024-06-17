@@ -12,10 +12,12 @@
 
     <div class="container ">
       <h3 class="text-center">Employee Profile</h3> 
+      <hr>
       <div class="employee-detail">
-        
         <div class="div-item item-pic">
+          
           <img class="card-img-top profile-pic" src="{{employee.photo.url}}" alt="employee photo">
+
           
         </div>
         <div class="div-item item-details">
@@ -49,24 +51,28 @@
               </div>                                         
               <div class="form-group"> 
                 <div class="form-group-item">
-                {{form.myportfolio|as_crispy_field}}
+                {{form.photo|as_crispy_field}}
                 </div>
               </div>                                         
 
+              <div class="form-group"> 
+                <div class="form-group-item">
+                {{form.myportfolio|as_crispy_field}}
+                </div>
+              </div>                                         
             </div>
-
             <input type="submit" class="btn btn-primary" name="Update Information">              
-
           </form>
-
         </div>  
-  
-        
       </div>
+      <hr>
+      {{employee.id}}
+      <button class="btn  btn-mybtn" id="btn-print-profile" data-sid="{{employee.id}}" data-url="{% url 'app_hr:print-profile' %}">Print Profile</button>
+
 
     </div>
 </section>
 <link rel="stylesheet" href="{% static 'css/custom-app-hr-employee-profile.css' %}">
-
+<script src="{% static 'js/app-hr-employee-profile-print.js' %}" ></script> 
 {% endblock %}
 

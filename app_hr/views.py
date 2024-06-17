@@ -2,10 +2,15 @@ from django.shortcuts import render,redirect,HttpResponse
 from django.http import  JsonResponse,response
 from .forms import DepartmentForm,PhoneForm, EmployeeForm, PhotoForm, EmployeeForm_files
 
-from .models import Department, Phone, Employee
 
+from .models import Department, Phone, Employee
+from .print_emp_profile import print_employee_profile_now
 from app_accounts.utils import is_ajax
 
+from .serializers import ImageModeSerializer
+from rest_framework.views import APIView
+from rest_framework import status
+from rest_framework.response import Response
 
 # Create your views here.
 
@@ -146,8 +151,57 @@ def context_processor(request):
   context={}
   return render(request,'app_hr/context-processor.html',context)
 
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
+def get_employee_info(empno):
+  emp = Employee.objects.filter(id=empno).values('first_name','last_name','designation','email_address','phone_number','department','photo','department__name')
+
+  photo_url= emp[0]['photo']
+  print(f'photo url: {photo_url} ')
+
+  emp1 = Employee.objects.filter(id=empno).values('photo')
+  # image_url =emp1.photo.url
+
+  print(f'--->>>>  emp1: {emp1} ')
+  emp_list = list(emp) 
+
+  return emp_list, photo_url
 
 
+def password_protected(request):
+  if is_ajax(request):
+    response = {'status':'Success', 'Message': 'ajax request'}
+    return JsonResponse(response)
+
+def print_profile(request):
+  if is_ajax(request):
+      empno = int( request.POST['emp_no'])
+      employee_data , photo_url= get_employee_info(empno)
+      print(f'photo url : {photo_url}')
+
+
+      if employee_data==None:
+        print('no records')
+        response = {'status':'No Value', 'Message': 'No employee record'}
+        return JsonResponse(response)
+      
+      if  employee_data:
+        mypath = 'c:/reportlab/employee_profile.pdf'
+        print(f'\n\n ***** employee_data *** {employee_data}')
+        
+        print_employee_profile_now(employee_data,mypath,empno,photo_url)
+
+
+
+        response = {'status':'Success', 'Message': 'invoice has been printed'}
+        return JsonResponse(response)
+      else  :
+        mypath=''
+        print('nothing to print')
+        response = {'status':'No Record Found', 'Message': 'No invoice found from the table'}
+        return JsonResponse(response)
+    
 
 
 
